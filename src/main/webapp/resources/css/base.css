@@ -1,0 +1,837 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+html {
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.5;
+}
+body,
+pre {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+main {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+pre {
+  font-size: 1em;
+}
+a {
+  background-color: transparent;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+code,
+kbd,
+samp {
+  font-size: 1em;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+img {
+  border-style: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  -webkit-appearance: button;
+}
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner,
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring,
+button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+fieldset {
+  padding: 0;
+}
+progress {
+  vertical-align: baseline;
+}
+textarea {
+  overflow: auto;
+}
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+details {
+  display: block;
+}
+summary {
+  display: list-item;
+}
+[hidden],
+template {
+  display: none;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+canvas,
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+body {
+  padding: 0;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+button,
+input {
+  background: transparent;
+  border: none;
+  color: var(--seed-scale-color-gray-900);
+}
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+:root {
+  --title-sub-color: rgba(0, 0, 0, 0.45);
+  --layout-line: rgba(0, 0, 0, 0.1);
+  --profile-image-border: var(--seed-semantic-color-divider-3);
+  --karrot-hover-color: #ff6d1f;
+}
+button {
+  cursor: pointer;
+}
+body {
+  background: var(--seed-scale-color-gray-100);
+  color: var(--seed-scale-color-gray-900);
+  letter-spacing: -0.02em;
+}
+.pointer-cursor {
+  cursor: pointer;
+}
+.common-bg-hover {
+  background-position: 50%;
+  cursor: pointer;
+  transition: background-color 0.6s, background-size 0.6s;
+}
+.common-bg-hover:hover {
+  background: var(--seed-scale-color-gray-200)
+    radial-gradient(circle, transparent 1%, var(--seed-scale-color-gray-200) 1%) center/15000%;
+}
+.common-bg-hover:active {
+  background-color: var(--seed-scale-color-gray-400);
+  background-size: 100%;
+  transition: background-color 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .common-bg-hover {
+    transition: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+:root {
+  color-scheme: light;
+}
+:root {
+  --seed-static-color-static-black: #000;
+  --seed-static-color-static-white: #fff;
+  --seed-static-color-static-gray-900: #212124;
+  --seed-static-color-static-carrot-50: #fff5f0;
+  --seed-static-color-static-carrot-800: #cc4700;
+  --seed-static-color-static-green-50: #e8faf6;
+  --seed-static-color-static-green-800: #008c72;
+  --seed-static-color-static-yellow-50: #fff7e6;
+  --seed-static-color-static-yellow-800: #ba5e02;
+  --seed-static-color-static-red-50: #fff3f2;
+  --seed-static-color-static-red-800: #e81300;
+  --seed-static-color-static-blue-50: #ebf7fa;
+  --seed-static-color-static-blue-800: #0a85b5;
+  --seed-static-color-static-black-alpha-200: #00000033;
+  --seed-static-color-static-black-alpha-500: #00000080;
+  --seed-static-color-static-white-alpha-50: #ffffff0d;
+  --seed-static-color-static-white-alpha-200: #ffffff33;
+  --seed-semantic-color-on-primary: var(--seed-static-color-static-white);
+  --seed-semantic-color-overlay-low: var(--seed-static-color-static-black-alpha-200);
+  --seed-semantic-color-overlay-dim: var(--seed-static-color-static-black-alpha-500);
+  --seed-semantic-color-on-primary-overlay-50: var(--seed-static-color-static-white-alpha-50);
+  --seed-semantic-color-on-primary-overlay-200: var(--seed-static-color-static-white-alpha-200);
+  --seed-scale-dimension-font-size-10: 0.625rem;
+  --seed-scale-dimension-font-size-25: 0.6875rem;
+  --seed-scale-dimension-font-size-50: 0.75rem;
+  --seed-scale-dimension-font-size-75: 0.8125rem;
+  --seed-scale-dimension-font-size-100: 0.875rem;
+  --seed-scale-dimension-font-size-150: 0.9375rem;
+  --seed-scale-dimension-font-size-200: 1rem;
+  --seed-scale-dimension-font-size-300: 1.125rem;
+  --seed-scale-dimension-font-size-400: 1.25rem;
+  --seed-scale-dimension-font-size-500: 1.5rem;
+  --seed-scale-dimension-font-size-600: 1.625rem;
+  --seed-scale-dimension-font-size-700: 2rem;
+  --seed-scale-dimension-font-size-800: 2.125rem;
+  --seed-scale-dimension-font-size-900: 2.625rem;
+  --seed-scale-dimension-font-size-1000: 3rem;
+  --seed-scale-dimension-font-size-1100: 3.375rem;
+  --seed-scale-dimension-font-size-1200: 3.75rem;
+  --seed-scale-dimension-font-size-1300: 4.5rem;
+  --seed-semantic-typography-h1-font-size: var(--seed-scale-dimension-font-size-1000);
+  --seed-semantic-typography-h2-font-size: var(--seed-scale-dimension-font-size-900);
+  --seed-semantic-typography-h3-font-size: var(--seed-scale-dimension-font-size-800);
+  --seed-semantic-typography-h4-font-size: var(--seed-scale-dimension-font-size-600);
+  --seed-semantic-typography-title1-bold-font-size: var(--seed-scale-dimension-font-size-500);
+  --seed-semantic-typography-title1-regular-font-size: var(--seed-scale-dimension-font-size-500);
+  --seed-semantic-typography-title2-bold-font-size: var(--seed-scale-dimension-font-size-400);
+  --seed-semantic-typography-title2-regular-font-size: var(--seed-scale-dimension-font-size-400);
+  --seed-semantic-typography-title3-bold-font-size: var(--seed-scale-dimension-font-size-300);
+  --seed-semantic-typography-title3-regular-font-size: var(--seed-scale-dimension-font-size-300);
+  --seed-semantic-typography-subtitle1-bold-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-subtitle1-regular-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-subtitle2-bold-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-subtitle2-regular-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-body-l1-bold-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-body-l1-regular-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-body-l2-bold-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-body-l2-regular-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-body-m1-bold-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-body-m1-regular-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-body-m2-bold-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-body-m2-regular-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-caption1-bold-font-size: var(--seed-scale-dimension-font-size-75);
+  --seed-semantic-typography-caption1-regular-font-size: var(--seed-scale-dimension-font-size-75);
+  --seed-semantic-typography-caption2-bold-font-size: var(--seed-scale-dimension-font-size-50);
+  --seed-semantic-typography-caption2-regular-font-size: var(--seed-scale-dimension-font-size-50);
+  --seed-semantic-typography-label1-bold-font-size: var(--seed-scale-dimension-font-size-300);
+  --seed-semantic-typography-label1-regular-font-size: var(--seed-scale-dimension-font-size-300);
+  --seed-semantic-typography-label2-bold-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-label2-regular-font-size: var(--seed-scale-dimension-font-size-200);
+  --seed-semantic-typography-label3-bold-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-label3-regular-font-size: var(--seed-scale-dimension-font-size-100);
+  --seed-semantic-typography-label4-bold-font-size: var(--seed-scale-dimension-font-size-50);
+  --seed-semantic-typography-label4-regular-font-size: var(--seed-scale-dimension-font-size-50);
+  --seed-semantic-typography-label5-bold-font-size: var(--seed-scale-dimension-font-size-25);
+  --seed-semantic-typography-label5-regular-font-size: var(--seed-scale-dimension-font-size-25);
+  --seed-semantic-typography-label6-bold-font-size: var(--seed-scale-dimension-font-size-10);
+  --seed-semantic-typography-label6-regular-font-size: var(--seed-scale-dimension-font-size-10);
+  --seed-static-font-weight-regular: normal;
+  --seed-static-font-weight-bold: bold;
+  --seed-semantic-typography-h1-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-h2-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-h3-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-h4-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-title1-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-title1-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-title2-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-title2-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-title3-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-title3-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-subtitle1-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-subtitle1-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-subtitle2-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-subtitle2-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-body-l1-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-body-l1-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-body-l2-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-body-l2-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-body-m1-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-body-m1-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-body-m2-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-body-m2-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-caption1-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-caption1-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-caption2-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-caption2-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-label1-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-label1-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-label2-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-label2-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-label3-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-label3-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-label4-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-label4-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-label5-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-label5-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-semantic-typography-label6-bold-font-weight: var(--seed-static-font-weight-bold);
+  --seed-semantic-typography-label6-regular-font-weight: var(--seed-static-font-weight-regular);
+  --seed-static-line-height-static-small: 135%;
+  --seed-static-line-height-static-medium: 150%;
+  --seed-static-line-height-static-large: 162%;
+  --seed-semantic-typography-h1-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-h2-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-h3-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-h4-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-title1-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-title1-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-title2-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-title2-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-title3-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-title3-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-subtitle1-bold-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-subtitle1-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-subtitle2-bold-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-subtitle2-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-body-l1-bold-line-height: var(--seed-static-line-height-static-large);
+  --seed-semantic-typography-body-l1-regular-line-height: var(
+    --seed-static-line-height-static-large
+  );
+  --seed-semantic-typography-body-l2-bold-line-height: var(--seed-static-line-height-static-medium);
+  --seed-semantic-typography-body-l2-regular-line-height: var(
+    --seed-static-line-height-static-medium
+  );
+  --seed-semantic-typography-body-m1-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-body-m1-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-body-m2-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-body-m2-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-caption1-bold-line-height: var(
+    --seed-static-line-height-static-medium
+  );
+  --seed-semantic-typography-caption1-regular-line-height: var(
+    --seed-static-line-height-static-medium
+  );
+  --seed-semantic-typography-caption2-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-caption2-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-label1-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-label1-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-label2-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-label2-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-label3-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-label3-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-label4-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-label4-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-label5-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-label5-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+  --seed-semantic-typography-label6-bold-line-height: var(--seed-static-line-height-static-small);
+  --seed-semantic-typography-label6-regular-line-height: var(
+    --seed-static-line-height-static-small
+  );
+}
+:root {
+	
+  /* 배추마켓 시그니처 컬러 */
+  --seed-cabbage-color-1: #EDF1D6;
+  --seed-cabbage-color-2: #9DC08B;
+  --seed-cabbage-color-3: #609966;
+  --seed-cabbage-color-4: #40513B;
+  
+  --seed-scale-color-gray-00: #fff;
+  --seed-scale-color-gray-50: #f7f8fa;
+  --seed-scale-color-gray-100: #f2f3f6;
+  --seed-scale-color-gray-200: #eaebee;
+  --seed-scale-color-gray-300: #dcdee3;
+  --seed-scale-color-gray-400: #d1d3d8;
+  --seed-scale-color-gray-500: #adb1ba;
+  --seed-scale-color-gray-600: #868b94;
+  --seed-scale-color-gray-700: #4d5159;
+  --seed-scale-color-gray-800: #393a40;
+  --seed-scale-color-gray-900: #212124;
+  --seed-scale-color-carrot-50: #fff5f0;
+  --seed-scale-color-carrot-100: #ffe2d2;
+  --seed-scale-color-carrot-200: #ffd2b9;
+  --seed-scale-color-carrot-300: #ffbc97;
+  --seed-scale-color-carrot-400: #ff9e66;
+  --seed-scale-color-carrot-500: #ff6f0f;
+  --seed-scale-color-carrot-600: #fa6616;
+  --seed-scale-color-carrot-700: #f05705;
+  --seed-scale-color-carrot-800: #cc4700;
+  --seed-scale-color-carrot-900: #b44104;
+  --seed-scale-color-carrot-950: #a03a03;
+  --seed-scale-color-blue-50: #ebf7fa;
+  --seed-scale-color-blue-100: #d2edfa;
+  --seed-scale-color-blue-200: #b9e3fa;
+  --seed-scale-color-blue-300: #87d7ff;
+  --seed-scale-color-blue-400: #57c7ff;
+  --seed-scale-color-blue-500: #009ceb;
+  --seed-scale-color-blue-600: #08c;
+  --seed-scale-color-blue-700: #0077b2;
+  --seed-scale-color-blue-800: #006199;
+  --seed-scale-color-blue-900: #004c73;
+  --seed-scale-color-blue-950: #003b59;
+  --seed-scale-color-red-50: #fff3f2;
+  --seed-scale-color-red-100: #ffe5e3;
+  --seed-scale-color-red-200: #fcd2cf;
+  --seed-scale-color-red-300: #ffaca6;
+  --seed-scale-color-red-400: #ff7e75;
+  --seed-scale-color-red-500: #ff4133;
+  --seed-scale-color-red-600: #fa2314;
+  --seed-scale-color-red-700: #e81607;
+  --seed-scale-color-red-800: #a62014;
+  --seed-scale-color-red-900: #910c00;
+  --seed-scale-color-red-950: #821006;
+  --seed-scale-color-green-50: #e8faf6;
+  --seed-scale-color-green-100: #c7f2e4;
+  --seed-scale-color-green-200: #96ebc3;
+  --seed-scale-color-green-300: #6adeac;
+  --seed-scale-color-green-400: #30c795;
+  --seed-scale-color-green-500: #1aa174;
+  --seed-scale-color-green-600: #128c6e;
+  --seed-scale-color-green-700: #077a5e;
+  --seed-scale-color-green-800: #06614a;
+  --seed-scale-color-green-900: #004f40;
+  --seed-scale-color-green-950: #004034;
+  --seed-scale-color-yellow-50: #fff7e6;
+  --seed-scale-color-yellow-100: #ffe3ba;
+  --seed-scale-color-yellow-200: #facc87;
+  --seed-scale-color-yellow-300: #f7be68;
+  --seed-scale-color-yellow-400: #dea651;
+  --seed-scale-color-yellow-500: #c27f29;
+  --seed-scale-color-yellow-600: #a66c21;
+  --seed-scale-color-yellow-700: #805217;
+  --seed-scale-color-yellow-800: #6b4717;
+  --seed-scale-color-yellow-900: #593d17;
+  --seed-scale-color-yellow-950: #4d361a;
+  --seed-scale-color-pink-50: #fff5f5;
+  --seed-scale-color-pink-100: #ffdddb;
+  --seed-scale-color-pink-200: #ffbfc5;
+  --seed-scale-color-pink-300: #ffadb4;
+  --seed-scale-color-pink-400: #ff8a9d;
+  --seed-scale-color-pink-500: #f0657c;
+  --seed-scale-color-pink-600: #db4b6a;
+  --seed-scale-color-pink-700: #bd2b5c;
+  --seed-scale-color-pink-800: #991c45;
+  --seed-scale-color-pink-900: #800d3d;
+  --seed-scale-color-pink-950: #660a30;
+  --seed-scale-color-purple-50: #f6f4fe;
+  --seed-scale-color-purple-100: #e3dafe;
+  --seed-scale-color-purple-200: #d5c7ff;
+  --seed-scale-color-purple-300: #cfbfff;
+  --seed-scale-color-purple-400: #b69eff;
+  --seed-scale-color-purple-500: #9675fa;
+  --seed-scale-color-purple-600: #8361e8;
+  --seed-scale-color-purple-700: #6748c7;
+  --seed-scale-color-purple-800: #4f3699;
+  --seed-scale-color-purple-900: #3f2687;
+  --seed-scale-color-purple-950: #331e70;
+  --seed-scale-color-gray-alpha-50: #0017580d;
+  --seed-scale-color-gray-alpha-100: #15234e1a;
+  --seed-scale-color-gray-alpha-200: #19233e33;
+  --seed-scale-color-gray-alpha-500: #282e4080;
+  --seed-scale-color-carrot-alpha-50: #ff6f0f0d;
+  --seed-scale-color-carrot-alpha-100: #ff6f0f24;
+  --seed-scale-color-carrot-alpha-200: #ff6f0f33;
+  --seed-scale-color-blue-alpha-50: #009ceb0d;
+  --seed-scale-color-blue-alpha-100: #009ceb1a;
+  --seed-scale-color-blue-alpha-200: #009ceb33;
+  --seed-scale-color-red-alpha-50: #ff41330d;
+  --seed-scale-color-red-alpha-100: #ff41331a;
+  --seed-scale-color-red-alpha-200: #ff413333;
+  --seed-scale-color-yellow-alpha-50: #f7be6814;
+  --seed-scale-color-yellow-alpha-100: #f7be6824;
+  --seed-scale-color-yellow-alpha-200: #f7be683d;
+  --seed-scale-color-green-alpha-50: #1aa1740d;
+  --seed-scale-color-green-alpha-100: #1aa17424;
+  --seed-scale-color-green-alpha-200: #1aa17433;
+  --seed-semantic-color-primary: var(--seed-scale-color-carrot-500);
+  --seed-semantic-color-primary-low: var(--seed-scale-color-carrot-alpha-100);
+  --seed-semantic-color-secondary: var(--seed-scale-color-gray-900);
+  --seed-semantic-color-secondary-low: var(--seed-scale-color-gray-alpha-50);
+  --seed-semantic-color-success: var(--seed-scale-color-green-500);
+  --seed-semantic-color-success-low: var(--seed-scale-color-green-alpha-50);
+  --seed-semantic-color-warning: var(--seed-scale-color-yellow-400);
+  --seed-semantic-color-warning-low: var(--seed-scale-color-yellow-alpha-100);
+  --seed-semantic-color-danger: var(--seed-scale-color-red-600);
+  --seed-semantic-color-danger-low: var(--seed-scale-color-red-alpha-50);
+  --seed-semantic-color-paper-sheet: var(--seed-scale-color-gray-00);
+  --seed-semantic-color-paper-dialog: var(--seed-scale-color-gray-00);
+  --seed-semantic-color-paper-floating: var(--seed-scale-color-gray-00);
+  --seed-semantic-color-paper-contents: var(--seed-scale-color-gray-50);
+  --seed-semantic-color-paper-default: var(--seed-scale-color-gray-00);
+  --seed-semantic-color-paper-background: var(--seed-scale-color-gray-100);
+  --seed-semantic-color-paper-accent: var(--seed-scale-color-carrot-50);
+  --seed-semantic-color-primary-hover: var(--seed-scale-color-carrot-400);
+  --seed-semantic-color-primary-pressed: var(--seed-scale-color-carrot-400);
+  --seed-semantic-color-primary-low-hover: var(--seed-scale-color-carrot-alpha-200);
+  --seed-semantic-color-primary-low-active: var(--seed-scale-color-carrot-alpha-200);
+  --seed-semantic-color-primary-low-pressed: var(--seed-scale-color-carrot-alpha-200);
+  --seed-semantic-color-gray-hover: var(--seed-scale-color-gray-100);
+  --seed-semantic-color-gray-pressed: var(--seed-scale-color-gray-100);
+  --seed-semantic-color-on-primary-low-overlay-50: var(--seed-scale-color-carrot-alpha-50);
+  --seed-semantic-color-on-primary-low-overlay-100: var(--seed-scale-color-carrot-alpha-100);
+  --seed-semantic-color-on-primary-low-overlay-200: var(--seed-scale-color-carrot-alpha-200);
+  --seed-semantic-color-on-gray-overlay-50: var(--seed-scale-color-gray-alpha-50);
+  --seed-semantic-color-on-gray-overlay-100: var(--seed-scale-color-gray-alpha-100);
+  --seed-semantic-color-text-selection: var(--seed-scale-color-carrot-50);
+  --seed-semantic-color-divider-1: var(--seed-scale-color-gray-alpha-50);
+  --seed-semantic-color-divider-2: var(--seed-scale-color-gray-200);
+  --seed-semantic-color-divider-3: var(--seed-scale-color-gray-300);
+  --seed-semantic-color-accent: var(--seed-scale-color-blue-500);
+  --seed-semantic-color-ink-text: var(--seed-scale-color-gray-900);
+  --seed-semantic-color-ink-text-low: var(--seed-scale-color-gray-600);
+  --seed-semantic-color-gray-active: var(--seed-scale-color-gray-700);
+}
+.seed-semantic-typography-h1 {
+  font-size: var(--seed-semantic-typography-h1-font-size);
+  font-weight: var(--seed-semantic-typography-h1-font-weight);
+  letter-spacing: var(--seed-semantic-typography-h1-letter-spacing);
+  line-height: var(--seed-semantic-typography-h1-line-height);
+}
+.seed-semantic-typography-h2 {
+  font-size: var(--seed-semantic-typography-h2-font-size);
+  font-weight: var(--seed-semantic-typography-h2-font-weight);
+  letter-spacing: var(--seed-semantic-typography-h2-letter-spacing);
+  line-height: var(--seed-semantic-typography-h2-line-height);
+}
+.seed-semantic-typography-h3 {
+  font-size: var(--seed-semantic-typography-h3-font-size);
+  font-weight: var(--seed-semantic-typography-h3-font-weight);
+  letter-spacing: var(--seed-semantic-typography-h3-letter-spacing);
+  line-height: var(--seed-semantic-typography-h3-line-height);
+}
+.seed-semantic-typography-h4 {
+  font-size: var(--seed-semantic-typography-h4-font-size);
+  font-weight: var(--seed-semantic-typography-h4-font-weight);
+  letter-spacing: var(--seed-semantic-typography-h4-letter-spacing);
+  line-height: var(--seed-semantic-typography-h4-line-height);
+}
+.seed-semantic-typography-title1-bold {
+  font-size: var(--seed-semantic-typography-title1-bold-font-size);
+  font-weight: var(--seed-semantic-typography-title1-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-title1-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-title1-bold-line-height);
+}
+.seed-semantic-typography-title1-regular {
+  font-size: var(--seed-semantic-typography-title1-regular-font-size);
+  font-weight: var(--seed-semantic-typography-title1-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-title1-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-title1-regular-line-height);
+}
+.seed-semantic-typography-title2-bold {
+  font-size: var(--seed-semantic-typography-title2-bold-font-size);
+  font-weight: var(--seed-semantic-typography-title2-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-title2-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-title2-bold-line-height);
+}
+.seed-semantic-typography-title2-regular {
+  font-size: var(--seed-semantic-typography-title2-regular-font-size);
+  font-weight: var(--seed-semantic-typography-title2-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-title2-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-title2-regular-line-height);
+}
+.seed-semantic-typography-title3-bold {
+  font-size: var(--seed-semantic-typography-title3-bold-font-size);
+  font-weight: var(--seed-semantic-typography-title3-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-title3-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-title3-bold-line-height);
+}
+.seed-semantic-typography-title3-regular {
+  font-size: var(--seed-semantic-typography-title3-regular-font-size);
+  font-weight: var(--seed-semantic-typography-title3-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-title3-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-title3-regular-line-height);
+}
+.seed-semantic-typography-subtitle1-bold {
+  font-size: var(--seed-semantic-typography-subtitle1-bold-font-size);
+  font-weight: var(--seed-semantic-typography-subtitle1-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-subtitle1-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-subtitle1-bold-line-height);
+}
+.seed-semantic-typography-subtitle1-regular {
+  font-size: var(--seed-semantic-typography-subtitle1-regular-font-size);
+  font-weight: var(--seed-semantic-typography-subtitle1-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-subtitle1-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-subtitle1-regular-line-height);
+}
+.seed-semantic-typography-subtitle2-bold {
+  font-size: var(--seed-semantic-typography-subtitle2-bold-font-size);
+  font-weight: var(--seed-semantic-typography-subtitle2-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-subtitle2-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-subtitle2-bold-line-height);
+}
+.seed-semantic-typography-subtitle2-regular {
+  font-size: var(--seed-semantic-typography-subtitle2-regular-font-size);
+  font-weight: var(--seed-semantic-typography-subtitle2-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-subtitle2-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-subtitle2-regular-line-height);
+}
+.seed-semantic-typography-body-l1-bold {
+  font-size: var(--seed-semantic-typography-body-l1-bold-font-size);
+  font-weight: var(--seed-semantic-typography-body-l1-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-l1-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-l1-bold-line-height);
+}
+.seed-semantic-typography-body-l1-regular {
+  font-size: var(--seed-semantic-typography-body-l1-regular-font-size);
+  font-weight: var(--seed-semantic-typography-body-l1-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-l1-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-l1-regular-line-height);
+}
+.seed-semantic-typography-body-l2-bold {
+  font-size: var(--seed-semantic-typography-body-l2-bold-font-size);
+  font-weight: var(--seed-semantic-typography-body-l2-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-l2-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-l2-bold-line-height);
+}
+.seed-semantic-typography-body-l2-regular {
+  font-size: var(--seed-semantic-typography-body-l2-regular-font-size);
+  font-weight: var(--seed-semantic-typography-body-l2-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-l2-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-l2-regular-line-height);
+}
+.seed-semantic-typography-body-m1-bold {
+  font-size: var(--seed-semantic-typography-body-m1-bold-font-size);
+  font-weight: var(--seed-semantic-typography-body-m1-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-m1-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-m1-bold-line-height);
+}
+.seed-semantic-typography-body-m1-regular {
+  font-size: var(--seed-semantic-typography-body-m1-regular-font-size);
+  font-weight: var(--seed-semantic-typography-body-m1-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-m1-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-m1-regular-line-height);
+}
+.seed-semantic-typography-body-m2-bold {
+  font-size: var(--seed-semantic-typography-body-m2-bold-font-size);
+  font-weight: var(--seed-semantic-typography-body-m2-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-m2-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-m2-bold-line-height);
+}
+.seed-semantic-typography-body-m2-regular {
+  font-size: var(--seed-semantic-typography-body-m2-regular-font-size);
+  font-weight: var(--seed-semantic-typography-body-m2-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-body-m2-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-body-m2-regular-line-height);
+}
+.seed-semantic-typography-caption1-bold {
+  font-size: var(--seed-semantic-typography-caption1-bold-font-size);
+  font-weight: var(--seed-semantic-typography-caption1-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-caption1-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-caption1-bold-line-height);
+}
+.seed-semantic-typography-caption1-regular {
+  font-size: var(--seed-semantic-typography-caption1-regular-font-size);
+  font-weight: var(--seed-semantic-typography-caption1-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-caption1-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-caption1-regular-line-height);
+}
+.seed-semantic-typography-caption2-bold {
+  font-size: var(--seed-semantic-typography-caption2-bold-font-size);
+  font-weight: var(--seed-semantic-typography-caption2-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-caption2-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-caption2-bold-line-height);
+}
+.seed-semantic-typography-caption2-regular {
+  font-size: var(--seed-semantic-typography-caption2-regular-font-size);
+  font-weight: var(--seed-semantic-typography-caption2-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-caption2-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-caption2-regular-line-height);
+}
+.seed-semantic-typography-label1-bold {
+  font-size: var(--seed-semantic-typography-label1-bold-font-size);
+  font-weight: var(--seed-semantic-typography-label1-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label1-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-label1-bold-line-height);
+}
+.seed-semantic-typography-label1-regular {
+  font-size: var(--seed-semantic-typography-label1-regular-font-size);
+  font-weight: var(--seed-semantic-typography-label1-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label1-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-label1-regular-line-height);
+}
+.seed-semantic-typography-label2-bold {
+  font-size: var(--seed-semantic-typography-label2-bold-font-size);
+  font-weight: var(--seed-semantic-typography-label2-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label2-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-label2-bold-line-height);
+}
+.seed-semantic-typography-label2-regular {
+  font-size: var(--seed-semantic-typography-label2-regular-font-size);
+  font-weight: var(--seed-semantic-typography-label2-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label2-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-label2-regular-line-height);
+}
+.seed-semantic-typography-label3-bold {
+  font-size: var(--seed-semantic-typography-label3-bold-font-size);
+  font-weight: var(--seed-semantic-typography-label3-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label3-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-label3-bold-line-height);
+}
+.seed-semantic-typography-label3-regular {
+  font-size: var(--seed-semantic-typography-label3-regular-font-size);
+  font-weight: var(--seed-semantic-typography-label3-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label3-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-label3-regular-line-height);
+}
+.seed-semantic-typography-label4-bold {
+  font-size: var(--seed-semantic-typography-label4-bold-font-size);
+  font-weight: var(--seed-semantic-typography-label4-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label4-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-label4-bold-line-height);
+}
+.seed-semantic-typography-label4-regular {
+  font-size: var(--seed-semantic-typography-label4-regular-font-size);
+  font-weight: var(--seed-semantic-typography-label4-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label4-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-label4-regular-line-height);
+}
+.seed-semantic-typography-label5-bold {
+  font-size: var(--seed-semantic-typography-label5-bold-font-size);
+  font-weight: var(--seed-semantic-typography-label5-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label5-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-label5-bold-line-height);
+}
+.seed-semantic-typography-label5-regular {
+  font-size: var(--seed-semantic-typography-label5-regular-font-size);
+  font-weight: var(--seed-semantic-typography-label5-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label5-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-label5-regular-line-height);
+}
+.seed-semantic-typography-label6-bold {
+  font-size: var(--seed-semantic-typography-label6-bold-font-size); 
+  font-weight: var(--seed-semantic-typography-label6-bold-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label6-bold-letter-spacing);
+  line-height: var(--seed-semantic-typography-label6-bold-line-height);
+}
+.seed-semantic-typography-label6-regular {
+  font-size: var(--seed-semantic-typography-label6-regular-font-size);
+  font-weight: var(--seed-semantic-typography-label6-regular-font-weight);
+  letter-spacing: var(--seed-semantic-typography-label6-regular-letter-spacing);
+  line-height: var(--seed-semantic-typography-label6-regular-line-height);
+}
+
+

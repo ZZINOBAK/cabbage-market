@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chatMessage">
+
+	<!-- messageType이 PIC 이면 messageContent에 PIC_CHAT 담기 -->
+	<!-- 그리고 안읽은 메세지에 1 추가 -->
+	<insert id="insertChatMessage" parameterType="chatMessageVO">
+		INSERT ALL 
+		INTO CHAT_MESSAGE
+		    (MESSAGE_ID, CHAT_ROOM_ID, SENDER_ID, MESSAGE_CONTENT, MESSAGE_TIME, MESSAGE_TYPE, COUNT_BY_ROOM, EMOJI_ID)
+		VALUES
+		    (MESSAGE_ID_SEQ.NEXTVAL, #{chatRoomId}, #{senderId}, #{messageContent}, SYSDATE
+		    , #{messageType}, (SELECT (NVL(MAX(COUNT_BY_ROOM), 0) + 1) FROM CHAT_MESSAGE WHERE CHAT_ROOM_ID = #{chatRoomId})
+		    , #{emojiId})
+		<if test="messageType == 'PIC'">
+		    
+			INTO FILES
+			    (FILE_ID, USER_ID, FILE_NAME, FILE_REGDATE)
+			VALUES
+			    (FILE_ID_SEQ.NEXTVAL, #{senderId}, #{picFileName}, SYSDATE)
+			
+			INTO CHAT_PIC
+			    (MESSAGE_ID, FILE_ID)
+			VALUES
+			    (MESSAGE_ID_SEQ.CURRVAL, FILE_ID_SEQ.CURRVAL)
+		</if>
+		<if test="messageType == 'PAY'">
+			INTO CHAT_MESSAGE_PAY
+				(MESSAGE_ID, FINAL_PRICE, PAY_STATUS)
+			VALUES
+				(MESSAGE_ID_SEQ.CURRVAL, #{finalPrice}, 'WAITING')
+		</if>
+		
+		SELECT * FROM DUAL
+		
+		<selectKey keyProperty="messageId,chatRoomId,senderId,messageContent,messageTime,messageType,countByRoom,emojiFileName" resultType="chatMessageVO" order="AFTER" >
+			SELECT 
+				MESSAGE_ID, CHAT_ROOM_ID, SENDER_ID, MESSAGE_CONTENT, MESSAGE_TIME, MESSAGE_TYPE, COUNT_BY_ROOM, EMOJI_ID
+				, (SELECT FILE_NAME FROM FILES WHERE FILE_ID = (SELECT FILE_ID FROM CHAT_EMOJI WHERE EMOJI_ID = M.EMOJI_ID)) EMOJI_FILE_NAME
+			FROM
+				CHAT_MESSAGE M
+			WHERE
+				CHAT_ROOM_ID = #{chatRoomId} AND SENDER_ID = #{senderId}
+				AND COUNT_BY_ROOM = (SELECT MAX(COUNT_BY_ROOM) FROM CHAT_MESSAGE WHERE CHAT_ROOM_ID = #{chatRoomId})
+		</selectKey>
+	
+	</insert>
+	
+	<update id="addUnreadCount" parameterType="chatMessageVO">
+		UPDATE CHAT_ROOM_USER
+		SET 
+			UNREAD_MESSAGE_COUNT = (UNREAD_MESSAGE_COUNT + 1)
+		WHERE
+			CHAT_ROOM_ID = #{chatRoomId} AND USER_ID != #{senderId}
+	</update>
+	
+	<update id="updateUnreadMessageCountToZERO" parameterType="chatRoomVO">
+		UPDATE CHAT_ROOM_USER
+		SET
+			UNREAD_MESSAGE_COUNT = 0
+		WHERE
+			CHAT_ROOM_ID = #{chatRoomId} AND USER_ID = #{requestUserId}
+	</update>
+	
+	<!-- 이게 리턴 0이면 다른 사용자의 메세지를 지우려고 시도했다는 것 -->
+	<update id="updateMessageTypeToDELETE" parameterType="chatMessageVO">
+		UPDATE CHAT_MESSAGE
+		SET
+			MESSAGE_TYPE = 'DEL'
+		WHERE
+			CHAT_ROOM_ID = #{chatRoomId} AND COUNT_BY_ROOM = #{countByRoom} AND SENDER_ID = #{senderId}
+	</update>
+	
+	<update id="updateMessagePayStatus" parameterType="chatMessageVO">
+		UPDATE CHAT_MESSAGE_PAY
+		SET
+			PAY_STATUS = #{payStatus}
+		WHERE
+			MESSAGE_ID = (SELECT MESSAGE_ID FROM CHAT_MESSAGE WHERE CHAT_ROOM_ID = #{chatRoomId} AND COUNT_BY_ROOM = #{countByRoom} AND SENDER_ID = #{senderId})
+			AND
+			PAY_STATUS = 'WAITING'
+	</update>
+	
+	<update id="finishMessagePay">
+		UPDATE CHAT_MESSAGE_PAY
+		SET
+			PAY_STATUS = #{payStatus}
+		WHERE
+			MESSAGE_ID = (SELECT MESSAGE_ID FROM CHAT_MESSAGE WHERE CHAT_ROOM_ID = #{chatRoomId} AND COUNT_BY_ROOM = #{countByRoom})
+			AND
+			PAY_STATUS = 'WAITING'
+	</update>
+	
+	<!-- 분으로 리턴해준다 -->
+	<select id="selectMessageTimeTermToDELETE" resultType="Integer" parameterType="chatMessageVO">
+		SELECT
+   			TRUNC((SYSDATE - MESSAGE_TIME) * 24 * 60)
+		FROM
+			CHAT_MESSAGE
+		WHERE
+			CHAT_ROOM_ID = #{chatRoomId} AND COUNT_BY_ROOM = #{countByRoom} AND SENDER_ID = #{senderId}
+	</select>
+	
+	<select id="getChatMessageListByRoomId" resultType="chatMessageVO" parameterType="chatRoomVO">
+		<if test="lastCount == null">
+			SELECT 
+   				MESSAGE_ID, CHAT_ROOM_ID, SENDER_ID, MESSAGE_CONTENT, MESSAGE_TIME, MESSAGE_TYPE, PIC_FILE_NAME, COUNT_BY_ROOM, PARTNER_UNREAD_COUNT, EMOJI_FILE_NAME, FINAL_PRICE, PAY_STATUS
+   			FROM
+   				(
+		</if>
+		SELECT 
+        MESSAGE_ID, CHAT_ROOM_ID, SENDER_ID, MESSAGE_CONTENT, MESSAGE_TIME, MESSAGE_TYPE, PIC_FILE_NAME, COUNT_BY_ROOM, PARTNER_UNREAD_COUNT, EMOJI_FILE_NAME, FINAL_PRICE, PAY_STATUS
+		    FROM
+		        (
+		SELECT 
+		    M.MESSAGE_ID, M.CHAT_ROOM_ID, M.SENDER_ID, M.MESSAGE_CONTENT, M.MESSAGE_TIME, M.MESSAGE_TYPE, M.COUNT_BY_ROOM, M.EMOJI_ID, P.FINAL_PRICE, P.PAY_STATUS
+		    , (SELECT FILE_NAME FROM FILES WHERE FILE_ID = (SELECT FILE_ID FROM CHAT_PIC WHERE MESSAGE_ID = M.MESSAGE_ID)) PIC_FILE_NAME
+		    , (SELECT FILE_NAME FROM FILES WHERE FILE_ID = (SELECT FILE_ID FROM CHAT_EMOJI WHERE EMOJI_ID = M.EMOJI_ID)) EMOJI_FILE_NAME
+		    , (SELECT UNREAD_MESSAGE_COUNT FROM CHAT_ROOM_USER WHERE CHAT_ROOM_ID = M.CHAT_ROOM_ID AND USER_ID != #{requestUserId}) PARTNER_UNREAD_COUNT
+		FROM
+			CHAT_MESSAGE M
+		LEFT JOIN
+		    CHAT_MESSAGE_PAY P
+		ON
+		    P.MESSAGE_ID = M.MESSAGE_ID
+		WHERE 
+			M.CHAT_ROOM_ID = #{chatRoomId} 
+				AND M.COUNT_BY_ROOM > (SELECT EXIT_POINT FROM CHAT_ROOM_USER WHERE CHAT_ROOM_ID = #{chatRoomId} AND USER_ID = #{requestUserId})
+			<if test="lastCount != null">
+				AND M.COUNT_BY_ROOM BETWEEN (#{lastCount} - 1 - 19) and (#{lastCount} - 1)
+			</if>
+		ORDER BY
+			M.MESSAGE_ID DESC)
+		<if test="lastCount == null">
+			) WHERE ROWNUM <![CDATA[<=]]> 21
+		</if>
+	</select>
+	
+	<select id="getEmojiList" resultType="map">
+		SELECT
+		    EMOJI_ID
+		    , (SELECT FILE_NAME FROM FILES WHERE FILE_ID = E.FILE_ID) FILE_NAME
+		FROM
+		    CHAT_EMOJI E
+	</select>
+	
+	<!-- requestUserId 는 다른 사람이 결제하는것을 방지하기 위해 추가 -->
+	<select id="selectChatMessageForPaying" resultType="chatMessageVO" parameterType="chatMessageVO">
+		SELECT 
+		    M.CHAT_ROOM_ID, M.COUNT_BY_ROOM, R.POST_ID, P.FINAL_PRICE
+		FROM
+		    CHAT_MESSAGE M 
+		INNER JOIN
+		    CHAT_MESSAGE_PAY P
+		ON
+		    P.MESSAGE_ID = M.MESSAGE_ID
+		INNER JOIN
+		    CHAT_ROOM R
+		ON
+		    R.CHAT_ROOM_ID = M.CHAT_ROOM_ID
+		INNER JOIN
+		    CHAT_ROOM_USER U
+		ON
+		    U.CHAT_ROOM_ID = R.CHAT_ROOM_ID AND U.USER_ID != M.SENDER_ID
+		WHERE
+		    M.CHAT_ROOM_ID = #{chatRoomId}
+		    AND M.COUNT_BY_ROOM = #{countByRoom}
+		    AND P.PAY_STATUS = 'WAITING'
+		    AND U.USER_ID  = #{requestUserId}
+	</select>
+	
+
+	<!-- ====== 백업 ====== -->
+	<!-- messageType이 PIC 이면 messageContent에 PIC_CHAT 담기 -->
+	<!-- <insert id="insertChatMessage" parameterType="chatMessageVO">
+		INSERT INTO CHAT_MESSAGE
+		    (MESSAGE_ID, CHAT_ROOM_ID, SENDER_ID, MESSAGE_CONTENT, MESSAGE_TIME, MESSAGE_TYPE, COUNT_BY_ROOM)
+		VALUES
+		    (MESSAGE_ID_SEQ.NEXTVAL, #{chatRoomId}, #{senderId}, #{messageContent}, SYSDATE
+		    , #{messageType}, (SELECT (MAX(COUNT_BY_ROOM) + 1) FROM CHAT_MESSAGE WHERE CHAT_ROOM_ID = #{chatRoomId}))
+		<if test="messageType == 'PIC'">
+		    ;
+			INSERT INTO FILES
+			    (FILE_ID, USER_ID, FILE_NAME, FILE_REGDATE)
+			VALUES
+			    (FILE_ID_SEQ.NEXTVAL, #{senderId}, #{picFileName}, SYSDATE)
+			;
+			INSERT INTO CHAT_PIC
+			    (MESSAGE_ID, FILE_ID)
+			VALUES
+			    (MESSAGE_ID_SEQ.CURRVAL, FILE_ID_SEQ.CURRVAL)
+		</if>
+		
+		<selectKey keyProperty="messageTime" resultType="date" order="AFTER" >
+			SELECT SYSDATE FROM DUAL
+		</selectKey> 
+	
+	</insert>-->
+	
+	
+	
+	<!-- 채팅방 나가기 구현 전 백업
+	<select id="getChatMessageListByRoomId" resultType="chatMessageVO" parameterType="chatRoomVO">
+		<if test="lastCount == null">
+			SELECT 
+   				MESSAGE_ID, CHAT_ROOM_ID, SENDER_ID, MESSAGE_CONTENT, MESSAGE_TIME, MESSAGE_TYPE, PIC_FILE_NAME, COUNT_BY_ROOM, PARTNER_UNREAD_COUNT
+   			FROM
+   				(
+		</if>
+		SELECT 
+			MESSAGE_ID, CHAT_ROOM_ID, SENDER_ID, MESSAGE_CONTENT, MESSAGE_TIME, MESSAGE_TYPE
+			, (SELECT FILE_NAME FROM FILES WHERE FILE_ID = (SELECT FILE_ID FROM CHAT_PIC WHERE MESSAGE_ID = M.MESSAGE_ID)) PIC_FILE_NAME
+			, COUNT_BY_ROOM
+			, (SELECT UNREAD_MESSAGE_COUNT FROM CHAT_ROOM_USER WHERE CHAT_ROOM_ID = M.CHAT_ROOM_ID AND USER_ID != #{requestUserId}) PARTNER_UNREAD_COUNT
+		FROM
+			CHAT_MESSAGE M
+		WHERE 
+			CHAT_ROOM_ID = #{chatRoomId} 
+			<if test="lastCount != null">
+				AND COUNT_BY_ROOM BETWEEN (#{lastCount} - 1 - 19) and (#{lastCount} - 1)
+			</if>
+		ORDER BY
+			MESSAGE_ID DESC
+		<if test="lastCount == null">
+			) WHERE ROWNUM <![CDATA[<=]]> 21
+		</if>
+	</select>
+	 -->
+	
+	
+</mapper>

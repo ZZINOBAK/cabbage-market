@@ -1,0 +1,31 @@
+# STS / Eclipse
+.project
+.classpath
+.settings/
+.springBeans
+
+# macOS 시스템 파일
+.DS_Store
+
+# Maven build directory
+target/
+
+# Logs
+*.log
+
+# IDE 설정
+*.iml
+.idea/
+*.swp
+
+# OS/Temp
+*.tmp
+*.bak
+*.swp
+Thumbs.db
+
+# 사용자 폴더 (예: Users/)
+Users/
+
+# 기타
+*.class

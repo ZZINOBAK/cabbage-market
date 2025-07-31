@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<select id="getUser" parameterType="userVO" resultType="userVO">
+		SELECT 
+		    U.USER_ID, UU.USER_NAME, UU.USER_PASSWORD, UU.USER_NICKNAME, UU.USER_PHONE, UU.USER_ONDO, U.USER_STATUS, UU.USER_REGDATE
+		    , (SELECT FILE_NAME FROM FILES WHERE FILE_ID = (SELECT FILE_ID FROM PROFILE_PIC WHERE USER_ID = UU.USER_ID)) PROFILE_PIC
+		FROM 
+		    USERS U
+		LEFT JOIN
+		    (SELECT * FROM USERS WHERE USER_STATUS != 'WITHDRWAL') UU
+		ON
+		    UU.USER_ID = U.USER_ID
+		WHERE 
+		    U.USER_ID = #{userId}
+	</select>
+	
+	<select id="getUsersInChatRoom" resultType="userVO" parameterType="chatRoomVO">
+		SELECT 
+		    U.USER_ID, UU.USER_NAME, UU.USER_PASSWORD, UU.USER_NICKNAME, UU.USER_PHONE, UU.USER_ONDO, U.USER_STATUS, UU.USER_REGDATE
+		    , (SELECT FILE_NAME FROM FILES WHERE FILE_ID = (SELECT FILE_ID FROM PROFILE_PIC WHERE USER_ID = UU.USER_ID)) PROFILE_PIC
+		FROM 
+		    USERS U
+		LEFT JOIN
+		    (SELECT * FROM USERS WHERE USER_STATUS != 'WITHDRWAL') UU
+		ON
+		    UU.USER_ID = U.USER_ID
+		WHERE 
+		    U.USER_ID IN (SELECT USER_ID FROM CHAT_ROOM_USER WHERE CHAT_ROOM_ID = #{chatRoomId})
+	</select>
+	
+	<!-- 데이터 여러개 한번에 인서트 -->
+	<insert id="insertUsersInChatRoom" parameterType="map">
+		INSERT All
+		<foreach collection="list" item="item" separator=" ">
+			INTO CHAT_ROOM_USER
+				(CHAT_ROOM_ID, USER_ID)
+			VALUES
+				(#{item.chatRoomId}, #{item.userId})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+</mapper>

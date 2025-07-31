@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="postDAO">
+
+	<!-- == 게시글 등록 부분 시작 ============================ -->
+	
+	<!-- 게시글 등록 -->
+	<insert id="insertPost" parameterType="post">
+		INSERT INTO POST (POST_ID, SELLER_ID, POST_CAT_ID, POST_TITLE, POST_PRICE, POST_CONTENT)
+		VALUES(POST_ID_SEQ.NEXTVAL, #{sellerId}, #{postCatId}, #{postTitle}, #{postPrice}, #{postContent})
+		<selectKey keyProperty="postId" resultType="long" order="AFTER">
+			SELECT POST_ID_SEQ.CURRVAL POST_ID FROM DUAL
+		</selectKey>
+	</insert>
+	<!-- 가장 최근 POST_ID 찾기 -->
+	<select id="getMaxPostId" resultType="int">
+		SELECT NVL(MAX(POST_ID), 0) FROM POST
+	</select>
+	<!-- Files 테이블에 데이터 넣기 -->
+	<insert id="insertFiles" parameterType="post">
+		INSERT INTO FILES (FILE_ID, USER_ID, FILE_NAME)
+		VALUES(FILE_ID_SEQ.NEXTVAL, #{userId}, #{fileName})
+	</insert>
+	<!-- PostPic 테이블에 데이터 넣기 -->
+	<insert id="insertPostPic" parameterType="post">
+		INSERT INTO POST_PIC (POST_ID, FILE_ID)
+		VALUES (#{postId}, #{fileId})
+	</insert>
+	<!-- PostPic 테이블 데이터 -->
+	<select id="getFileId_PostId" resultType="post" parameterType="Long">
+		SELECT P.POST_ID, F.FILE_ID FROM POST P, FILES F
+		WHERE P.POST_ID = #{postId} AND F.FILE_NAME LIKE '%' || CONCAT('post', #{postId}) || '%'
+	</select>
+	<!-- == 게시글 등록 부분  끝 ============================ -->
+
+	
+	<!-- (임시) 전체 게시글 받기 -->
+	<select id="getPostList" parameterType="post" resultType="post">
+		SELECT * FROM POST
+		ORDER BY POST_ID DESC
+	</select>
+	
+	
+	<!-- ==게시글 수정/삭제 부분 시작 ============================ -->
+	<select id="getUpdatePage" parameterType="post" resultType="post">
+		SELECT * FROM POST
+		WHERE POST_ID = #{postId}
+	</select>
+	<!-- 게시글 정보 수정 -->
+	<update id="updatePost" parameterType="post">
+		UPDATE POST SET POST_CAT_ID = #{postCatId}, POST_TITLE = #{postTitle},
+                POST_PRICE = #{postPrice}, POST_CONTENT = #{postContent}
+		WHERE POST_ID = #{postId}
+		<selectKey keyProperty="userNickname" resultType="String" order="AFTER">
+			SELECT USER_NICKNAME FROM USERS WHERE USER_ID = #{userId}
+		</selectKey>
+	</update>
+	<!-- 사용자가 선택한 이미지파일 제거 -->
+	<delete id="deleteFiles" parameterType="String">
+		DELETE FROM FILES WHERE FILE_ID = #{fileId}
+	</delete>
+	<!--  게시글 삭제 -->
+	<update id="deletePost" parameterType="post">
+		UPDATE POST SET POST_STATUS = 'DELETE' WHERE POST_ID = #{postId}
+	</update>
+	<!-- 예약중 처리 -->
+	<update id="reservePost" parameterType="post">
+		UPDATE POST SET POST_STATUS = 'RESERVE' WHERE POST_ID = #{postId}
+	</update>
+	<!-- 거래완료 처리 -->
+	<update id="finishPost" parameterType="post">
+		UPDATE POST SET POST_STATUS = 'FINISH' WHERE POST_ID = #{postId}
+	</update>
+	<!-- 거래중 처리 -->
+	<update id="enablePost" parameterType="post">
+		UPDATE POST SET POST_STATUS = 'ENABLE' WHERE POST_ID = #{postId}
+	</update>
+	
+	<!-- == 게시글 수정/삭제 부분 끝 ============================ -->
+	
+	
+	<!-- == 게시글 상세보기 부분 시작 ============================ -->
+	
+	<!-- 해당 게시글 데이터 -->
+	<select id="getPost" parameterType="post" resultType="post">
+		<!-- SELECT P.*, C.POST_CAT_NAME FROM POST P, POST_CATEGORY C
+		WHERE P.POST_ID = #{postId} AND P.POST_CAT_ID = C.POST_CAT_ID -->
+		
+		SELECT P.*, (select post_cat_name from post_category where post_cat_id = p.post_cat_id) POST_CAT_NAME 
+		FROM 
+			POST P
+		WHERE P.POST_ID = #{postId} 
+	</select>
+	<!-- 상세보기에 표시할 이미지 -->
+	<select id="getPostPic" parameterType="post" resultType="post">
+		SELECT FILE_NAME, FILE_ID FROM FILES 
+		WHERE FILE_ID IN (SELECT FILE_ID FROM POST_PIC WHERE POST_ID = #{postId})
+	</select>
+	<!-- 상세보기에 표시할 판매자 USER 데이터 -->
+	<select id="getUser" parameterType="post" resultType="post">
+		SELECT U.*, PP.*, F.FILE_NAME
+		FROM USERS U
+		LEFT JOIN PROFILE_PIC PP ON U.USER_ID = PP.USER_ID
+		LEFT JOIN FILES F ON PP.FILE_ID = F.FILE_ID
+		WHERE U.USER_ID = #{sellerId}
+	</select>
+	<!-- 판매자의 다른 상품 리스트와 대표사진 1장 -->
+	<select id="getAnotherPost" parameterType="post" resultType="post">
+		SELECT * FROM(
+			SELECT FILES.FILE_NAME, POST.*
+			FROM POST
+			LEFT JOIN (
+				SELECT MIN(FILE_ID) AS MIN_FILE_ID, POST_ID
+        		FROM POST_PIC
+        		<!-- WHERE POST_ID != #{postId}  -->
+        		GROUP BY POST_ID)
+        	MIN_FILES ON POST.POST_ID = MIN_FILES.POST_ID
+	    	LEFT JOIN FILES ON MIN_FILES.MIN_FILE_ID = FILES.FILE_ID
+	    	WHERE POST.POST_ID != #{postId}
+	    	AND POST.SELLER_ID = #{sellerId}
+	    	AND POST.POST_STATUS != 'DELETE'
+	   		ORDER BY POST.POST_ID DESC)
+	    WHERE ROWNUM <![CDATA[<=]]> 6
+	</select>
+	
+	<!-- 조회수 증가 처리 -->
+	<update id="plusPostViews" parameterType="post">
+		UPDATE POST SET POST_VIEWS = POST_VIEWS + 1
+		WHERE POST_ID = #{postId}
+	</update>
+	
+	<!-- 찜 목록에 추가 -->
+	<insert id="addWishList" parameterType="post">
+		INSERT INTO POST_WISH_LIST (USER_ID, POST_ID)
+		VALUES (#{userId}, #{postId})
+	</insert>
+	<!-- 찜 취소 -->
+	<delete id="deleteWishList" parameterType="post">
+		DELETE FROM POST_WISH_LIST
+		WHERE USER_ID = #{userId} AND POST_ID = #{postId}
+	</delete>
+	<!-- 찜 목록 조회 -->
+	<select id="checkWishList" parameterType="post" resultType="post">
+		SELECT * FROM POST_WISH_LIST
+		WHERE POST_ID = #{postId} AND USER_ID = #{userId}
+	</select>
+	<!-- 게시글 찜 수 (관심 수) -->
+	<select id="countWish" parameterType="post" resultType="int">
+		SELECT COUNT(*) FROM POST_WISH_LIST
+		WHERE POST_ID = #{postId}
+	</select>
+	<!-- == 게시글 상세보기 부분 끝 ============================ -->
+	
+	
+	<!-- == 결제 창 ============================ -->
+	<!-- 결제할 게시글 정보 -->
+	<select id="getPayPost" parameterType="post" resultType="post">
+		SELECT P.*, PG.POST_CAT_NAME 
+		FROM POST P
+		JOIN POST_CATEGORY PG ON P.POST_CAT_ID = PG.POST_CAT_ID
+		WHERE P.POST_ID = #{postId}
+	</select>
+	
+	<select id="getOnePic" parameterType="post" resultType="String">
+		SELECT FILE_NAME FROM FILES
+		WHERE FILE_ID = (SELECT FILE_ID FROM POST_PIC WHERE POST_ID = #{postId}
+		AND ROWNUM <![CDATA[<=]]> 1)
+	</select>
+	
+	<select id="getChatUser" parameterType="post" resultType="post">
+		SELECT
+		USER_ID, USER_NICKNAME FROM USERS
+		WHERE 
+			USER_ID IN (SELECT USER_ID FROM CHAT_ROOM_USER WHERE CHAT_ROOM_ID IN (SELECT CHAT_ROOM_ID FROM CHAT_ROOM WHERE POST_ID = #{postId}))
+            AND 
+            USER_ID != (SELECT SELLER_ID FROM POST WHERE POST_ID = #{postId})
+	</select>
+	
+	<update id="insertBuyer" parameterType="Map">
+      UPDATE POST SET BUYER_ID = (SELECT USER_ID FROM USERS WHERE USER_NICKNAME = #{userNickname})
+      WHERE POST_ID = #{postId}
+   </update>
+	
+</mapper>

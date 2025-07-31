@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mainDAO">
+    
+	<select id="getPostListForNew" resultType="mainPost">
+	SELECT *
+	FROM (
+	    SELECT p.*,
+		       f.file_id,
+		       f.file_name,
+		       u.user_nickname,
+		       (select count(*) from post_wish_list where post_id = p.post_id) AS post_wish_count,
+          	   (select count(*) from chat_room where post_id = p.post_id) AS chat_room_count
+		FROM post p
+		LEFT JOIN (
+		    SELECT post_id, MIN(file_id) AS min_file_id
+		    FROM post_pic
+		    GROUP BY post_id
+		) min_pp ON p.post_id = min_pp.post_id
+		LEFT JOIN files f ON min_pp.min_file_id = f.file_id
+		LEFT JOIN users u ON p.seller_id = u.user_id
+		LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+		LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+		WHERE 
+		u.user_status = 'ENABLE'
+		AND p.post_status IN ('ENABLE', 'RESERVE')
+		GROUP BY
+		    p.post_id,
+		    p.seller_id,
+		    p.post_cat_id,
+		    p.post_title,
+		    p.post_price,
+		    p.post_content,
+		    p.post_status,
+		    p.post_regdate,
+		    p.post_views,
+		    p.buyer_id,
+		    p.review,
+		    u.user_nickname,
+		    f.file_name,
+		    f.file_id
+		ORDER BY p.post_regdate DESC
+	)
+	WHERE ROWNUM <![CDATA[<=]]> 8
+	</select>
+	
+	<select id="getPostListForRcByVc" resultType="mainPost">
+	SELECT * FROM (
+	    SELECT p.*,
+	           u.user_nickname,
+	           pp_lowest.file_id AS file_id,
+	           f.file_name,
+	           (select count(*) from post_wish_list where post_id = p.post_id) AS post_wish_count,
+          	   (select count(*) from chat_room where post_id = p.post_id) AS chat_room_count,
+	           (p.post_views / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)+1) +
+	            COUNT(pwl.post_id) / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)+1) * 1.5 +
+	            COUNT(cr.post_id) / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)  )+1 )* 2 AS total_counts
+	    FROM post p
+	    LEFT JOIN (
+	        SELECT post_id, MIN(file_id) AS file_id
+	        FROM post_pic
+	        GROUP BY post_id
+	    ) pp_lowest ON p.post_id = pp_lowest.post_id
+	    LEFT JOIN files f ON pp_lowest.file_id = f.file_id
+	    LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+	    LEFT JOIN users u ON p.seller_id = u.user_id
+	    LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+	    WHERE u.user_status = 'ENABLE'
+	      AND p.post_status IN ('ENABLE', 'RESERVE')
+	    GROUP BY p.post_id, 
+	             p.seller_id, p.post_cat_id, p.post_title, p.post_price,
+	             p.post_content, p.post_status, p.post_regdate, 
+	             p.post_views, p.buyer_id, p.review, u.user_nickname, f.file_name, pp_lowest.file_id
+	    ORDER BY total_counts DESC
+	)
+	WHERE ROWNUM &lt;= 8
+	</select>
+	
+	<select id="getPostListForRcById" parameterType="String" resultType="mainPost">
+	SELECT * FROM (
+	    SELECT rownum AS rnum, main_query.*
+	    FROM (
+	        SELECT post.*, f.file_id, f.file_name, u.user_nickname,
+			(select count(*) from post_wish_list where post_id = post.post_id) AS post_wish_count,
+          	(select count(*) from chat_room where post_id = post.post_id) AS chat_room_count
+	        FROM post
+	        LEFT JOIN (
+	            SELECT post_id, MIN(file_id) AS min_file_id
+	            FROM post_pic
+	            GROUP BY post_id
+	        ) min_pp ON post.post_id = min_pp.post_id
+	        LEFT JOIN files f ON min_pp.min_file_id = f.file_id
+	        LEFT JOIN users u ON post.seller_id = u.user_id
+	        LEFT JOIN (
+	            SELECT post_id, COUNT(*) AS post_wish_count
+	            FROM post_wish_list
+	            GROUP BY post_id
+	        ) pwl ON post.post_id = pwl.post_id
+	        LEFT JOIN (
+	            SELECT post_id, COUNT(*) AS chat_room_count
+	            FROM chat_room
+	            GROUP BY post_id
+	        ) cr ON post.post_id = cr.post_id
+	        WHERE 
+	            post.post_cat_id = (
+	                SELECT post_cat_id
+	                FROM (
+	                    SELECT post_cat_id, COUNT(*) AS cat_count
+	                    FROM post_wish_list
+	                    JOIN post ON post_wish_list.post_id = post.post_id
+	                    WHERE post_wish_list.user_id = #{id}
+	                    GROUP BY post_cat_id
+	                    ORDER BY cat_count DESC
+	                ) top_category
+	                WHERE ROWNUM = 1
+	            )
+	            AND u.user_status = 'ENABLE'
+	            AND post.post_status IN ('ENABLE', 'RESERVE') -- 추가된 조건
+	        ORDER BY post_regdate DESC
+	    ) main_query
+	    WHERE rownum &lt;= 8
+	) 
+	ORDER BY rnum
+	</select>
+	
+	<select id="countNewAll" resultType="int">
+	SELECT COUNT(*) AS total_rows
+	FROM (
+	    SELECT p.*
+	    FROM post p
+	    LEFT JOIN (
+	        SELECT post_id, MIN(file_id) AS min_file_id
+	        FROM post_pic
+	        GROUP BY post_id
+	    ) min_pp ON p.post_id = min_pp.post_id
+	    LEFT JOIN files f ON min_pp.min_file_id = f.file_id
+	    LEFT JOIN users u ON p.seller_id = u.user_id
+	    WHERE 
+	    u.user_status = 'ENABLE'
+	    AND p.post_status IN ('ENABLE', 'RESERVE')
+	    ORDER BY p.post_regdate DESC
+	) subquery
+	</select>
+	
+	<select id="getPostListForNewAll" resultType="mainPost">
+	SELECT *
+	FROM (
+	    SELECT ROWNUM AS rn,
+	           p.*
+	    FROM (
+	        SELECT p.*,
+			       f.file_id,
+			       f.file_name,
+			       u.user_nickname,
+			       (select count(*) from post_wish_list where post_id = p.post_id) AS post_wish_count,
+          	   	   (select count(*) from chat_room where post_id = p.post_id) AS chat_room_count
+			FROM post p
+			LEFT JOIN (
+			    SELECT post_id, MIN(file_id) AS min_file_id
+			    FROM post_pic
+			    GROUP BY post_id
+			) min_pp ON p.post_id = min_pp.post_id
+			LEFT JOIN files f ON min_pp.min_file_id = f.file_id
+			LEFT JOIN users u ON p.seller_id = u.user_id
+			LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+			LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+			WHERE 
+			u.user_status = 'ENABLE'
+			AND p.post_status IN ('ENABLE', 'RESERVE')
+			GROUP BY
+			    p.post_id,
+			    p.seller_id,
+			    p.post_cat_id,
+			    p.post_title,
+			    p.post_price,
+			    p.post_content,
+			    p.post_status,
+			    p.post_regdate,
+			    p.post_views,
+			    p.buyer_id,
+			    p.review,
+			    u.user_nickname,
+			    f.file_name,
+			    f.file_id
+			ORDER BY p.post_regdate DESC
+	    ) p
+	)
+	WHERE rn BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<select id="countVcAll" resultType="int">
+	SELECT COUNT(DISTINCT p.post_id)
+	FROM post p
+	LEFT JOIN (
+	    SELECT post_id, MIN(file_id) AS file_id
+	    FROM post_pic
+	    GROUP BY post_id
+	) pp_lowest ON p.post_id = pp_lowest.post_id
+	LEFT JOIN files f ON pp_lowest.file_id = f.file_id
+	LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+	LEFT JOIN users u ON p.seller_id = u.user_id
+	LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+	WHERE 
+	    u.user_status = 'ENABLE'
+	    AND p.post_status IN ('ENABLE', 'RESERVE')
+    </select>
+    
+	<select id="getPostListForRcByVcAll" parameterType="map" resultType="mainPost">
+    SELECT *
+	FROM (
+	    SELECT 
+	        subquery.*,
+	        ROWNUM AS rnum
+	    FROM (
+	        SELECT 
+	            p.*,
+	            u.user_nickname,
+	            pp_lowest.file_id AS file_id,
+	            f.file_name,
+	            (select count(*) from post_wish_list where post_id = p.post_id) AS post_wish_count,
+          	    (select count(*) from chat_room where post_id = p.post_id) AS chat_room_count,
+	            (p.post_views / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)+1) +
+	            COUNT(pwl.post_id) / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)+1) * 1.5 +
+	            COUNT(cr.post_id) / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)  )+1 )* 2 AS total_counts
+	        FROM 
+	            post p
+	            LEFT JOIN (
+	                SELECT post_id, MIN(file_id) AS file_id
+	                FROM post_pic
+	                GROUP BY post_id
+	            ) pp_lowest ON p.post_id = pp_lowest.post_id
+	            LEFT JOIN files f ON pp_lowest.file_id = f.file_id
+	            LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+	            LEFT JOIN users u ON p.seller_id = u.user_id
+	            LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+	        WHERE 
+	            u.user_status = 'ENABLE'
+	            AND p.post_status IN ('ENABLE', 'RESERVE')
+	        GROUP BY 
+	            p.post_id, 
+	            p.seller_id, p.post_cat_id, p.post_title, p.post_price,
+	            p.post_content, p.post_status, p.post_regdate, 
+	            p.post_views, p.buyer_id, u.user_nickname, f.file_name, pp_lowest.file_id
+	        ORDER BY 
+	            total_counts DESC
+	    ) subquery
+	    WHERE ROWNUM <![CDATA[<=]]> #{end}
+	)
+	WHERE rnum <![CDATA[>=]]> #{begin}
+	</select>
+    
+    <select id="countIdAll" parameterType="String" resultType="int">
+	SELECT COUNT(*) AS total_rows
+	FROM (
+	    SELECT post.*
+	    FROM post
+	    LEFT JOIN (
+	        SELECT post_id, MIN(file_id) AS min_file_id
+	        FROM post_pic
+	        GROUP BY post_id
+	    ) min_pp ON post.post_id = min_pp.post_id
+	    LEFT JOIN users u ON post.seller_id = u.user_id
+	    WHERE 
+	        post.post_cat_id = (
+	            SELECT post_cat_id
+	            FROM (
+	                SELECT post_cat_id, COUNT(*) AS cat_count
+	                FROM post_wish_list
+	                JOIN post ON post_wish_list.post_id = post.post_id
+	                WHERE post_wish_list.user_id = #{id}
+	                GROUP BY post_cat_id
+	                ORDER BY cat_count DESC
+	            ) top_category
+	            WHERE ROWNUM = 1
+	        )
+	        AND u.user_status = 'ENABLE'
+	        AND post.post_status IN ('ENABLE', 'RESERVE') -- 추가된 조건
+	) subquery
+    </select>
+    
+	<select id="getPostListForRcByIdAll" parameterType="map" resultType="mainPost">
+	SELECT *
+	FROM (
+	    SELECT rownum AS rnum, main_query.*
+		FROM (
+		    SELECT post.*, f.file_id, f.file_name, u.user_nickname,
+		    (select count(*) from post_wish_list where post_id = post.post_id) AS post_wish_count,
+          	(select count(*) from chat_room where post_id = post.post_id) AS chat_room_count
+		    FROM post 
+		    LEFT JOIN (
+		        SELECT post_id, MIN(file_id) AS min_file_id
+		        FROM post_pic
+		        GROUP BY post_id
+		    ) min_pp ON post.post_id = min_pp.post_id
+		    LEFT JOIN files f ON min_pp.min_file_id = f.file_id
+		    LEFT JOIN users u ON post.seller_id = u.user_id
+		    LEFT JOIN (
+		        SELECT post_id, COUNT(*) AS post_wish_count
+		        FROM post_wish_list
+		        GROUP BY post_id
+		    ) pwl ON post.post_id = pwl.post_id
+		    LEFT JOIN (
+		        SELECT post_id, COUNT(*) AS chat_room_count
+		        FROM chat_room
+		        GROUP BY post_id
+		    ) cr ON post.post_id = cr.post_id
+		    WHERE 
+		        post.post_cat_id = (
+		            SELECT post_cat_id
+		            FROM (
+		                SELECT post_cat_id, COUNT(*) AS cat_count
+		                FROM post_wish_list
+		                JOIN post ON post_wish_list.post_id = post.post_id
+		                WHERE post_wish_list.user_id = #{id}
+		                GROUP BY post_cat_id
+		                ORDER BY cat_count DESC
+		            ) top_category
+		            WHERE ROWNUM = 1
+		        )
+		        AND u.user_status = 'ENABLE'
+		        AND post.post_status IN ('ENABLE', 'RESERVE') -- 추가된 조건
+		    ORDER BY post_regdate DESC
+		) main_query
+	    WHERE rownum <![CDATA[<=]]> #{end} -- 원하는 범위의 끝 값
+	)
+	WHERE rnum <![CDATA[>=]]> #{begin} -- 원하는 범위의 시작 값
+	</select>
+	
+
+
+	<!-- 알림 테스트용 --> 
+	<insert id="insertPost" parameterType="post">
+	<selectKey keyProperty="postId" resultType="Long" order="AFTER">
+        SELECT post_id_seq.NEXTVAL FROM DUAL
+    </selectKey>
+	INSERT INTO POST (
+	  POST_ID,
+	  SELLER_ID,
+	  POST_CAT_ID,
+	  POST_TITLE,
+	  POST_PRICE,
+	  POST_CONTENT,
+	  POST_REGDATE
+	) VALUES
+		(post_id_seq.NEXTVAL, 
+		#{sellerId}, #{postCatId}, #{postTitle}, #{postPrice}, #{postContent}, 
+		TO_DATE('2022/02/02', 'YYYY/MM/DD')
+	)
+	</insert>
+	
+	<update id="updatePost" parameterType="post">
+	UPDATE POST
+	SET POST_PRICE = #{postPrice}
+	WHERE POST_ID = #{postId};
+	</update>
+	
+	
+	
+	
+	
+	
+	<select id="getTop100Post" resultType="mainPost">
+	SELECT * FROM (
+	    SELECT p.*,
+	           u.user_nickname,
+	           pp_lowest.file_id AS file_id,
+	           f.file_name,
+	           (select count(*) from post_wish_list where post_id = p.post_id) AS post_wish_count,
+          	   (select count(*) from chat_room where post_id = p.post_id) AS chat_room_count,
+	           (p.post_views / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)+1) +
+	            COUNT(pwl.post_id) / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)+1) * 1.5 +
+	            COUNT(cr.post_id) / (TRUNC((SYSDATE - p.post_regdate)*24*60*60)  )+1 )* 2 AS total_counts
+	    FROM post p
+	    LEFT JOIN (
+	        SELECT post_id, MIN(file_id) AS file_id
+	        FROM post_pic
+	        GROUP BY post_id
+	    ) pp_lowest ON p.post_id = pp_lowest.post_id
+	    LEFT JOIN files f ON pp_lowest.file_id = f.file_id
+	    LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+	    LEFT JOIN users u ON p.seller_id = u.user_id
+	    LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+	    WHERE u.user_status = 'ENABLE'
+	      AND p.post_status IN ('ENABLE', 'RESERVE')
+	    GROUP BY p.post_id, 
+	             p.seller_id, p.post_cat_id, p.post_title, p.post_price,
+	             p.post_content, p.post_status, p.post_regdate, 
+	             p.post_views, p.buyer_id, p.review, u.user_nickname, f.file_name, pp_lowest.file_id
+	    ORDER BY total_counts DESC
+	)
+	WHERE ROWNUM &lt;= 100
+	</select>
+</mapper>
+	

@@ -1,0 +1,334 @@
+@charset "UTF-8";
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+
+body {
+    min-width: 320px;
+    max-width: 768px;
+    margin: 0 auto;
+    color: var(--seed-scale-color-gray-900);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+ 
+/*------ data-v-aed0d24c 카테고리 리스트 부분 처리 --------------------------------------------- */
+.feedbacks-category-list > .feedbacks-category-item > a[data-v-aed0d24c] {
+    display: block;
+    padding: 16px 0;
+    color: var(--seed-scale-color-gray-900);
+    text-decoration: none;
+}
+
+/*
+.feedbacks-category-list > .feedbacks-category-item[data-v-aed0d24c] {
+    border-bottom: 1px solid var(--seed-scale-color-gray-200);
+}
+*/
+
+
+.feedbacks-category-list[data-v-aed0d24c] {
+    margin: 24px;
+    list-style-type: none;
+}
+
+a {
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+li {
+    text-align: -webkit-match-parent;
+    border-bottom-style: inset;
+    border-width: thin;
+}
+
+
+/*--------------------------------------------- */
+
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+* {
+  line-height: 2.56rem;
+}
+
+.category-title[data-v-aed0d24c] {
+    font-weight: normal;
+    margin: 24px;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+
+
+ul,ol {
+  list-style-position: outside;
+  padding-left: 2rem;
+  margin-bottom: 0;
+  li {
+    font-size: 1.6rem;
+    color: var(--seed-scale-color-gray-900);
+    p {
+      display: inline;
+    }
+  }
+}
+
+img {
+  margin: 0.8rem 0;
+  width: 100% !important;
+}
+
+a {
+  font-size: 1.3rem;
+  color: var(--seed-scale-color-carrot-600) !important;
+  text-decoration: none;
+}
+
+p {
+  font-size: 1.6rem;
+  color: var(--seed-scale-color-gray-900);
+  margin-bottom: 0;
+}
+
+p:empty {
+  height: 2.4rem;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  display: block;
+  border: none;
+  margin: 0.8rem 0;
+
+  @media screen and (min-width: 768px) {
+    min-height: 43rem;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  overflow: hidden;
+  margin: 0.8rem 0;
+}
+
+td,th {
+    min-width: 1em;
+    border: 1px solid var(--seed-scale-color-gray-200);
+    padding: 3px 5px;
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;
+
+    * {
+      font-weight: 400;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+ul, ol {
+      padding-left: 0;
+      list-style-position: inside;
+    }
+
+    *::selection {
+      color: var(--seed-scale-color-gray-900);
+    }
+  }
+
+  th {
+    text-align: center;
+    background-color: var(--seed-scale-color-gray-100);
+  }
+
+  .selectedCell:after {
+    z-index: 2;
+    position: absolute;
+    content: "";
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: rgba(200, 200, 255, 0.4);
+    pointer-events: none;
+  }
+}
+
+
+
+/* ----------------------- */
+@media (prefers-color-scheme: light)
+:root {
+    --seed-scale-color-gray-00: #ffffff;
+    --seed-scale-color-gray-50: #f7f8fa;
+    --seed-scale-color-gray-100: #f2f3f6;
+    --seed-scale-color-gray-200: #eaebee;
+    --seed-scale-color-gray-300: #dcdee3;
+    --seed-scale-color-gray-400: #d1d3d8;
+    --seed-scale-color-gray-500: #adb1ba;
+    --seed-scale-color-gray-600: #868b94;
+    --seed-scale-color-gray-700: #4d5159;
+    --seed-scale-color-gray-800: #393A40;
+    --seed-scale-color-gray-900: #212124;
+    --seed-scale-color-carrot-50: #fff5f0;
+    --seed-scale-color-carrot-100: #FFE2D2;
+    --seed-scale-color-carrot-200: #ffd2b9;
+    --seed-scale-color-carrot-300: #ffbc97;
+    --seed-scale-color-carrot-400: #ff9e66;
+    --seed-scale-color-carrot-500: #ff6f0f;
+    --seed-scale-color-carrot-600: #fa6616;
+    --seed-scale-color-carrot-700: #f05705;
+    --seed-scale-color-carrot-800: #cc4700;
+    --seed-scale-color-carrot-900: #b44104;
+    --seed-scale-color-carrot-950: #a03a03;
+    --seed-scale-color-blue-50: #EBF7FA;
+    --seed-scale-color-blue-100: #D2EDFA;
+    --seed-scale-color-blue-200: #B9E3FA;
+    --seed-scale-color-blue-300: #87D7FF;
+    --seed-scale-color-blue-400: #57C7FF;
+    --seed-scale-color-blue-500: #009CEB;
+    --seed-scale-color-blue-600: #0088CC;
+    --seed-scale-color-blue-700: #0077B2;
+    --seed-scale-color-blue-800: #006199;
+    --seed-scale-color-blue-900: #004C73;
+    --seed-scale-color-blue-950: #003B59;
+    --seed-scale-color-red-50: #FFF3F2;
+    --seed-scale-color-red-100: #FFE5E3;
+    --seed-scale-color-red-200: #FCD2CF;
+    --seed-scale-color-red-300: #FFACA6;
+    --seed-scale-color-red-400: #FF7E75;
+    --seed-scale-color-red-500: #FF4133;
+    --seed-scale-color-red-600: #FA2314;
+    --seed-scale-color-red-700: #E81607;
+    --seed-scale-color-red-800: #A62014;
+    --seed-scale-color-red-900: #910C00;
+    --seed-scale-color-red-950: #821006;
+    --seed-scale-color-green-50: #E8FAF6;
+    --seed-scale-color-green-100: #C7F2E4;
+    --seed-scale-color-green-200: #96EBC3;
+    --seed-scale-color-green-300: #6ADEAC;
+    --seed-scale-color-green-400: #30C795;
+    --seed-scale-color-green-500: #1AA174;
+    --seed-scale-color-green-600: #128C6E;
+    --seed-scale-color-green-700: #077A5E;
+    --seed-scale-color-green-800: #06614A;
+    --seed-scale-color-green-900: #004F40;
+    --seed-scale-color-green-950: #004034;
+    --seed-scale-color-yellow-50: #fff7e6;
+    --seed-scale-color-yellow-100: #FFE3BA;
+    --seed-scale-color-yellow-200: #FACC87;
+    --seed-scale-color-yellow-300: #F7BE68;
+    --seed-scale-color-yellow-400: #DEA651;
+    --seed-scale-color-yellow-500: #C27F29;
+    --seed-scale-color-yellow-600: #A66C21;
+    --seed-scale-color-yellow-700: #805217;
+    --seed-scale-color-yellow-800: #6B4717;
+    --seed-scale-color-yellow-900: #593D17;
+    --seed-scale-color-yellow-950: #4D361A;
+    --seed-scale-color-pink-50: #FFF5F5;
+    --seed-scale-color-pink-100: #FFDDDB;
+    --seed-scale-color-pink-200: #FFBFC5;
+    --seed-scale-color-pink-300: #FFADB4;
+    --seed-scale-color-pink-400: #FF8A9D;
+    --seed-scale-color-pink-500: #F0657C;
+    --seed-scale-color-pink-600: #DB4B6A;
+    --seed-scale-color-pink-700: #BD2B5C;
+    --seed-scale-color-pink-800: #991C45;
+    --seed-scale-color-pink-900: #800D3D;
+    --seed-scale-color-pink-950: #660A30;
+    --seed-scale-color-purple-50: #F6F4FE;
+    --seed-scale-color-purple-100: #E3DAFE;
+    --seed-scale-color-purple-200: #D5C7FF;
+    --seed-scale-color-purple-300: #CFBFFF;
+    --seed-scale-color-purple-400: #B69EFF;
+    --seed-scale-color-purple-500: #9675FA;
+    --seed-scale-color-purple-600: #8361E8;
+    --seed-scale-color-purple-700: #6748C7;
+    --seed-scale-color-purple-800: #4F3699;
+    --seed-scale-color-purple-900: #3F2687;
+    --seed-scale-color-purple-950: #331E70;
+    --seed-scale-color-gray-alpha-50: #0000000d;
+    --seed-scale-color-gray-alpha-100: #0000001a;
+    --seed-scale-color-gray-alpha-200: #00000033;
+    --seed-scale-color-gray-alpha-500: #00000080;
+    --seed-scale-color-carrot-alpha-50: #ff6f0f0d;
+    --seed-scale-color-carrot-alpha-100: #ff6f0f24;
+    --seed-scale-color-carrot-alpha-200: #ff6f0f33;
+    --seed-scale-color-blue-alpha-50: #009CEB0d;
+    --seed-scale-color-blue-alpha-100: #009CEB1a;
+    --seed-scale-color-blue-alpha-200: #009CEB33;
+    --seed-scale-color-red-alpha-50: #FF41330d;
+    --seed-scale-color-red-alpha-100: #FF41331a;
+    --seed-scale-color-red-alpha-200: #FF413333;
+    --seed-scale-color-yellow-alpha-50: #F7BE6814;
+    --seed-scale-color-yellow-alpha-100: #F7BE6824;
+    --seed-scale-color-yellow-alpha-200: #F7BE683d;
+    --seed-scale-color-green-alpha-50: #1AA1740d;
+    --seed-scale-color-green-alpha-100: #1AA17424;
+    --seed-scale-color-green-alpha-200: #1AA17433;
+    --seed-semantic-color-primary: var(--seed-scale-color-carrot-500);
+    --seed-semantic-color-primary-low: var(--seed-scale-color-carrot-alpha-100);
+    --seed-semantic-color-secondary: var(--seed-scale-color-gray-900);
+    --seed-semantic-color-secondary-low: var(--seed-scale-color-gray-alpha-50);
+    --seed-semantic-color-success: var(--seed-scale-color-green-500);
+    --seed-semantic-color-success-low: var(--seed-scale-color-green-alpha-50);
+    --seed-semantic-color-warning: var(--seed-scale-color-yellow-400);
+    --seed-semantic-color-warning-low: var(--seed-scale-color-yellow-alpha-100);
+    --seed-semantic-color-danger: var(--seed-scale-color-red-600);
+    --seed-semantic-color-danger-low: var(--seed-scale-color-red-alpha-50);
+    --seed-semantic-color-paper-sheet: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-dialog: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-floating: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-contents: var(--seed-scale-color-gray-50);
+    --seed-semantic-color-paper-default: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-background: var(--seed-scale-color-gray-100);
+    --seed-semantic-color-paper-accent: var(--seed-scale-color-carrot-50);
+    --seed-semantic-color-primary-hover: var(--seed-scale-color-carrot-400);
+    --seed-semantic-color-primary-pressed: var(--seed-scale-color-carrot-400);
+    --seed-semantic-color-primary-low-hover: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-primary-low-active: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-primary-low-pressed: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-gray-hover: var(--seed-scale-color-gray-100);
+    --seed-semantic-color-gray-pressed: var(--seed-scale-color-gray-100);
+    --seed-semantic-color-on-primary-low-overlay-50: var(--seed-scale-color-carrot-alpha-50);
+    --seed-semantic-color-on-primary-low-overlay-100: var(--seed-scale-color-carrot-alpha-100);
+    --seed-semantic-color-on-primary-low-overlay-200: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-on-gray-overlay-50: var(--seed-scale-color-gray-alpha-50);
+    --seed-semantic-color-on-gray-overlay-100: var(--seed-scale-color-gray-alpha-100);
+    --seed-semantic-color-text-selection: var(--seed-scale-color-carrot-50);
+    --seed-semantic-color-divider-1: var(--seed-scale-color-gray-alpha-50);
+    --seed-semantic-color-divider-2: var(--seed-scale-color-gray-200);
+    --seed-semantic-color-divider-3: var(--seed-scale-color-gray-300);
+    --seed-semantic-color-accent: var(--seed-scale-color-blue-500);
+    --seed-semantic-color-ink-text: var(--seed-scale-color-gray-900);
+    --seed-semantic-color-ink-text-low: var(--seed-scale-color-gray-600);
+    --seed-semantic-color-gray-active: var(--seed-scale-color-gray-700);
+}
+

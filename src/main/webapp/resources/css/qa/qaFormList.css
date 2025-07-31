@@ -1,0 +1,231 @@
+@charset "UTF-8";
+
+h1 {
+	display: flex;
+    grid-gap: 1rem;
+    gap: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.7rem;
+    letter-spacing: -1%;
+    color: var(--seed-scale-color-gray-900);
+    align-items: center;
+    margin-left: -5rem;
+    padding: 0 1.6rem 0.1rem 1.6rem;
+    width: 100;
+    border-bottom: 1px solid var(--seed-scale-color-gray-200);
+}
+
+
+
+#container {
+	width: 700px;
+	margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+
+#container select, #container input[type="text"], #container input[type="submit"]
+	{
+	flex: 0 0 auto;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: #f2f2f2;
+    border: 1px solid var(--seed-scale-color-gray-200);
+    border-radius: 0.38rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: #919494;
+}
+
+#container input[type="submit"] {
+	background-color: #f2f2f2;
+	color: #919494;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+#container input[type="submit"]:hover {
+	background-color: #909191;
+	color: black;
+}
+
+#container .center {
+	text-align: center;
+}
+
+#container form {
+	padding: 8px;
+	margin: 5px;
+	text-align: center; 
+	display: grid;
+}
+
+
+
+/* 테스트용 */
+.fb__communityDetail__recentView {
+    padding: 1.875rem 0.9375rem 2.5rem;
+}
+.fb__communityDetail__comments {
+    padding: 1.25rem 0;
+}
+html, body, div, span, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    letter-spacing: -0.02187rem;
+}
+user agent stylesheet
+section {
+    display: block;
+}
+.fb {
+    width: 100%;
+    font-size: 1rem;
+}
+body {
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Pretendard";
+}
+.fb__communityDetail__recentView .recentView__title {
+    color: #111111;
+    font-size: 0;
+    line-height: 0;
+    padding-bottom: 0.9375rem;
+    border-bottom: 1px solid #eeeeee;
+}
+.fb__communityDetail__recentView .recentView__link {
+    display: block;
+    padding: 0.9375rem 0;
+    border-bottom: 1px solid #eeeeee;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+a {
+    background-color: transparent;
+}
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    letter-spacing: -0.02187rem;
+}
+
+ul li, ol li {
+    list-style: none;
+}
+.fb__communityDetail__recentView .recentView__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+}
+html, body, div, span, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    letter-spacing: -0.02187rem;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+user agent stylesheet
+.fb__communityDetail__recentView .recentView__info__write .write__list:not(:first-of-type) {
+    margin-left: 0.375rem;
+}
+
+
+/* 카테고리 및 날짜 부분 */
+.fb__communityDetail__recentView .recentView__info__write .write__list {
+    display: inline-block;
+    color: #999999;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    vertical-align: middle;
+    margin-right: 0.3rem;
+}
+p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    vertical-align: baseline;
+    background: transparent;
+}
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    letter-spacing: -0.02187rem;
+}
+.fb__communityDetail__recentView .recentView__info__count {
+    font-size: 0;
+}
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    letter-spacing: -0.02187rem;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fb__communityDetail__recentView .recentView__info__count .count__list::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+.fb__communityDetail__recentView .recentView__info__count .count__list {
+    display: inline-block;
+    position: relative;
+    padding-left: 1.125rem;
+    color: #999999;
+    font-size: 0.625rem;
+    line-height: 0.75rem;
+    vertical-align: middle;
+}

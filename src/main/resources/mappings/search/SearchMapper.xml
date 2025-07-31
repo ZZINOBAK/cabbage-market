@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Search">
+
+    <select id="searchPost" parameterType="map" resultType="com.cabbage.biz.search.post.PostVO">
+        SELECT *
+        FROM (
+                 SELECT
+                     subquery.*,
+                     ROWNUM AS rnum
+                 FROM (
+                          SELECT
+                              p.*,
+                              u.user_nickname,
+                              pp_lowest.file_id AS file_id,
+                              f.file_name,
+                              (select count(*) from post_wish_list where post_id = p.post_id) AS post_wish_count,
+          	   				  (select count(*) from chat_room where post_id = p.post_id) AS chat_room_count
+                          FROM
+                              post p
+                                  LEFT JOIN (
+                                  SELECT post_id, MIN(file_id) AS file_id
+                                  FROM post_pic
+                                  GROUP BY post_id
+                              ) pp_lowest ON p.post_id = pp_lowest.post_id
+                                  LEFT JOIN files f ON pp_lowest.file_id = f.file_id
+                                  LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+                                  LEFT JOIN users u ON p.seller_id = u.user_id
+                                  LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+                          WHERE p.POST_TITLE LIKE '%'|| #{keyword} ||'%'
+                            AND u.user_status = 'ENABLE'
+                            AND p.post_status IN ('ENABLE', 'RESERVE')
+                          GROUP BY
+                              p.post_id,
+                              p.seller_id, p.post_cat_id, p.post_title, p.post_price,
+                              p.post_content, p.post_status, p.post_regdate,
+                              p.post_views, p.buyer_id, p.review, u.user_nickname, f.file_name, pp_lowest.file_id
+                          ORDER BY
+                              p.POST_REGDATE DESC
+                      ) subquery
+                 WHERE ROWNUM <![CDATA[<=]]> #{end}
+             )
+        WHERE rnum <![CDATA[>=]]> #{begin}
+    </select>
+    <!--페이징 포스트 리스트 불러오기-->
+    <select id="categoryPost" parameterType="map" resultType="com.cabbage.biz.search.post.PostVO">
+        SELECT *
+        FROM (
+                 SELECT
+                     subquery.*,
+                     ROWNUM AS rnum
+                 FROM (
+                          SELECT
+                              p.*,
+                              u.user_nickname,
+                              pp_lowest.file_id AS file_id,
+                              f.file_name,
+                              (select count(*) from post_wish_list where post_id = p.post_id) AS post_wish_count,
+          	   				  (select count(*) from chat_room where post_id = p.post_id) AS chat_room_count
+                          FROM
+                              post p
+                                  LEFT JOIN (
+                                  SELECT post_id, MIN(file_id) AS file_id
+                                  FROM post_pic
+                                  GROUP BY post_id
+                              ) pp_lowest ON p.post_id = pp_lowest.post_id
+                                  LEFT JOIN files f ON pp_lowest.file_id = f.file_id
+                                  LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+                                  LEFT JOIN users u ON p.seller_id = u.user_id
+                                  LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+                          WHERE p.POST_CAT_ID = #{category}
+                            AND u.user_status = 'ENABLE'
+                            AND p.post_status IN ('ENABLE', 'RESERVE')
+                          GROUP BY
+                              p.post_id,
+                              p.seller_id, p.post_cat_id, p.post_title, p.post_price,
+                              p.post_content, p.post_status, p.post_regdate,
+                              p.post_views, p.buyer_id, p.review, u.user_nickname, f.file_name, pp_lowest.file_id
+                          ORDER BY
+                              p.POST_REGDATE DESC
+                      ) subquery
+                 WHERE ROWNUM <![CDATA[<=]]> #{end}
+             )
+        WHERE rnum <![CDATA[>=]]> #{begin}
+    </select>
+
+    <!-- 카테고리 별 포스트 개수-->
+    <select id="countCategoryPostList" parameterType="string" resultType="int">
+        SELECT COUNT(p.post_id) AS post_count
+        FROM
+            post p
+        JOIN
+            users u ON p.seller_id = u.user_id
+        WHERE
+            p.post_cat_id = #{category}
+          AND u.user_status = 'ENABLE'
+          AND p.post_status IN ('ENABLE', 'RESERVE')
+    </select>
+
+    <!-- 카테고리 별 포스트 개수-->
+    <select id="countKeywordPostList" parameterType="string" resultType="int">
+        SELECT COUNT(p.post_id) AS post_count
+        FROM
+            post p
+        JOIN
+            users u ON p.seller_id = u.user_id
+        WHERE
+            p.POST_TITLE LIKE '%'|| #{keyword} ||'%'
+          AND u.user_status = 'ENABLE'
+          AND p.post_status IN ('ENABLE', 'RESERVE')
+    </select>
+
+    <select id="countVcAll" resultType="int">
+        SELECT COUNT(DISTINCT p.post_id)
+        FROM post p
+                 LEFT JOIN (
+            SELECT post_id, MIN(file_id) AS file_id
+            FROM post_pic
+            GROUP BY post_id
+        ) pp_lowest ON p.post_id = pp_lowest.post_id
+                 LEFT JOIN files f ON pp_lowest.file_id = f.file_id
+                 LEFT JOIN post_wish_list pwl ON p.post_id = pwl.post_id
+                 LEFT JOIN users u ON p.seller_id = u.user_id
+                 LEFT JOIN chat_room cr ON p.post_id = cr.post_id
+        WHERE
+            u.user_status = 'ENABLE'
+          AND p.post_status IN ('ENABLE', 'RESERVE')
+    </select>
+
+
+    <select id="selectKeyword" parameterType="string" resultType="com.cabbage.biz.search.search.SearchVO">
+        SELECT *
+        FROM SEARCH_KEYWORD_LOG
+        WHERE USER_ID = #{userId}
+          AND SEARCH_KEYWORD = #{searchKeyword}
+    </select>
+
+    <!-- 키워드 입력 -->
+    <insert id="insertKeyword" parameterType="com.cabbage.biz.search.search.SearchVO">
+        INSERT INTO SEARCH_KEYWORD_LOG (USER_ID, SEARCH_KEYWORD,SEARCH_DATE)
+        VALUES (#{userId}, #{searchKeyword}, SYSDATE)
+    </insert>
+    
+    <!-- 같은 키워드 검색시  -->
+    <update id="updateSearchDate" parameterType="com.cabbage.biz.search.search.SearchVO" >
+        UPDATE SEARCH_KEYWORD_LOG
+        SET SEARCH_DATE = SYSDATE,
+            USE_YN = 'Y'
+        WHERE USER_ID = #{userId}
+            AND SEARCH_KEYWORD = #{searchKeyword}
+    </update>
+
+    <!-- 키워드 삭제 -->
+    <update id="deleteKeyword" parameterType="com.cabbage.biz.search.search.SearchVO">
+        UPDATE SEARCH_KEYWORD_LOG
+        SET USE_YN = 'N'
+        WHERE USER_ID = #{userId}
+          AND SEARCH_KEYWORD = #{searchKeyword}
+    </update>
+
+    <!-- 키워드 삭제 -->
+    <delete id="deleteKeywordOld" parameterType="com.cabbage.biz.search.search.SearchVO">
+        DELETE FROM SEARCH_KEYWORD_LOG WHERE USER_ID = #{userId}
+    </delete>
+
+    <!-- 인기 검색어 -->
+    <select id="relatedSearch" parameterType="String"
+            resultType="String">
+        SELECT SEARCH_KEYWORD, KEYWORD_COUNT
+        FROM (
+                 SELECT SEARCH_KEYWORD, COUNT(*) AS KEYWORD_COUNT
+                 FROM SEARCH_KEYWORD_LOG
+                 GROUP BY SEARCH_KEYWORD
+                 ORDER BY KEYWORD_COUNT DESC
+             )
+        WHERE ROWNUM <![CDATA[<=]]>  10
+    </select>
+
+    <!-- 검색어 자동 완성 8개-->
+    <select id="autocomplete" parameterType="string" resultType="String">
+        SELECT SEARCH_KEYWORD
+        FROM (
+            SELECT SEARCH_KEYWORD
+            FROM SEARCH_KEYWORD_LOG
+            WHERE SEARCH_KEYWORD LIKE #{query} || '%'
+            GROUP BY SEARCH_KEYWORD
+            ORDER BY COUNT(*) DESC
+        )
+        WHERE ROWNUM <![CDATA[<=]]> 8
+    </select>
+
+    <!-- 최근 검색 기록 -->
+    <select id="recentSearchLog" parameterType="com.cabbage.biz.search.search.SearchVO"
+    resultType="string">
+        SELECT SEARCH_KEYWORD
+        FROM (
+            SELECT SEARCH_KEYWORD
+            FROM SEARCH_KEYWORD_LOG
+            WHERE USER_ID = #{userId}
+              AND USE_YN = 'Y'
+            ORDER BY SEARCH_DATE DESC
+        )
+        WHERE ROWNUM <![CDATA[<=]]> 10
+    </select>
+
+	<!-- 최근 검색어 전테 삭제 -->
+	<update id="deleteAllKeyword" parameterType="string">
+		UPDATE SEARCH_KEYWORD_LOG
+		SET USE_YN = 'N'
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<update id="keywordMerge" parameterType="com.cabbage.biz.search.search.SearchVO">
+		MERGE INTO 
+			SEARCH_KEYWORD_LOG
+		USING DUAL ON 
+			(USER_ID = #{userId} AND SEARCH_KEYWORD = #{searchKeyword})
+		WHEN MATCHED THEN
+		  	UPDATE SET SEARCH_DATE = SYSDATE, USE_YN = 'Y'
+		WHEN NOT MATCHED THEN
+		  	INSERT (USER_ID, SEARCH_KEYWORD, SEARCH_DATE)
+		    VALUES (#{userId}, #{searchKeyword}, SYSDATE)
+	</update>
+</mapper>

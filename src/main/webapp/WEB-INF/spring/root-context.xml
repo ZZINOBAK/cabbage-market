@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	
+	<!-- <context:component-scan base-package="com.cabbage.biz" /> -->
+		<context:component-scan base-package="com.cabbage.biz" />
+		
+ 	<!-- DataSource 설정 for oracle-->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+ 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+ 	<!-- 	<property name="url" value="jdbc:oracle:thin:@192.168.45.38:1521:xe" /> -->
+		<property name="username" value="CABBAGE_MARKET" />
+		<property name="password" value="cmpw" />
+	</bean>
+
+		 
+	<!-- DataSource 설정 for mysql-->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+ 		<property name="url" value="jdbc:mysql://localhost:3306/CABBAGE_MARKET" />
+		<property name="username" value="CABBAGE_MARKET" />
+		<property name="password" value="cmpw" />
+	</bean> -->
+		
+	<!-- 스프링-마이바티스 연동 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+		
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 이메일 인증 관련 등록 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+	    <property name="port" value="465"/>
+	    <property name="username" value="jsw4795@gmail.com"/>
+	    <property name="password" value="xpnkjmlyqjddzwfa"/>
+	    <!-- 보안연결 SSL과 관련된 설정 -->
+	    <property name="javaMailProperties">
+		    <props>
+		      <prop key="mail.smtp.auth">true</prop>
+		      <prop key="mail.smtp.ssl.enable">true</prop>
+		      <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+		      <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+		      
+		      <!-- <prop key="mail.smtp.starttls.enable">true</prop>
+		      <prop key="mail.smtps.checkserveridentity">true</prop>
+		      <prop key="mail.smtps.ssl.trust">*</prop>
+		      <prop key="mail.debug">true</prop>
+		      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop> -->
+		     </props>
+	     </property>
+	</bean>
+		
+</beans>

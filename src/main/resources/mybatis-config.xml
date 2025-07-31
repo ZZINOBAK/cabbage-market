@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<!-- null 값은 null로 입력해라 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<!-- A_COLUMN 에서 aColumn 으로 자동으로 변경되어서 사용됨 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+
+	<typeAliases>
+	<!-- ==================================== Chat ===================================== -->
+		<typeAlias type="com.cabbage.biz.chat.user.UserVO" alias="userVO" /> 
+		<typeAlias type="com.cabbage.biz.chat.chat.ChatMessageVO" alias="chatMessageVO" />
+		<typeAlias type="com.cabbage.biz.chat.chat.ChatRoomVO" alias="chatRoomVO" />
+		<typeAlias type="com.cabbage.biz.chat.post.PostVO" alias="postVO" />
+	<!-- ==================================== Post ===================================== -->
+		<typeAlias type="com.cabbage.biz.post.post.PostVO" alias="post" />
+	<!-- ==================================== User ===================================== -->
+	<typeAlias type="com.cabbage.biz.userInfo.user.UserVO" alias="user"/>
+	<!-- ==================================== Main ===================================== -->
+		<typeAlias type="com.cabbage.biz.main.main.MainVO" alias="mainPost"/>
+	<!-- ==================================== Noti ===================================== -->
+		<typeAlias type="com.cabbage.biz.noti.noti.NotiVO" alias="noti"/>
+	<!-- ==================================== QA ===================================== -->
+		<typeAlias type="com.cabbage.biz.qa.faq.FaqVO" alias="faq"/>
+		<typeAlias type="com.cabbage.biz.qa.qa.QaVO" alias="qa"/>
+	</typeAliases>
+ 	
+ 
+	<mappers>
+	<!-- ==================================== Chat ===================================== -->
+		<mapper resource="mappings/chat/userMapper.xml" />
+		<mapper resource="mappings/chat/chatMessageMapper.xml" />
+		<mapper resource="mappings/chat/chatRoomMapper.xml" />
+		<mapper resource="mappings/chat/postMapper.xml" />
+	<!-- ==================================== Post ===================================== -->
+		<mapper resource="mappings/post/PostMapper.xml"/>
+	<!-- ==================================== User ===================================== -->
+		<mapper resource="mappings/user/UserMapper.xml"/>
+	<!-- ==================================== User ===================================== -->
+		<mapper resource="mappings/user/UserMapper.xml"/>
+	<!-- ==================================== Main ===================================== -->
+		<mapper resource="mappings/main/MainMapper.xml"/>
+	<!-- ==================================== Noti ===================================== -->
+		<mapper resource="mappings/noti/NotiMapper.xml"/>
+	<!-- ==================================== Search ===================================== -->
+		<mapper resource="mappings/search/SearchMapper.xml"/>
+	<!-- ==================================== QA ===================================== -->
+		<mapper resource="mappings/qa/QaMapper.xml"/>
+		<mapper resource="mappings/qa/FaqMapper.xml"/>
+	</mappers>
+	
+	
+    
+</configuration>

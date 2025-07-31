@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+img.back {
+	width: 35px;
+	filter: invert(54%) sepia(28%) saturate(503%) hue-rotate(76deg) brightness(94%) contrast(95%);
+	display: flex;
+	margin-left: 18px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+
+a {
+  text-decoration: none;
+   color: #609966;
+}
+
+h4 {
+   color: #609966;
+}
+li {
+  list-style: none;
+}
+
+.wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EDF1D6;
+}
+
+.login {
+  width: 30%;
+  height: 600px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+h2 {
+  color: #609966;
+  font-size: 2em;
+  text-align:center;
+
+
+}
+.login_sns {
+  padding: 20px;
+  display: flex;
+}
+
+.login_sns li {
+  padding: 0px 15px;
+}
+
+.login_sns a {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50px;
+  background: white;
+  font-size: 20px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4), -3px -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login_id {
+  margin-top: 20px;
+  width: 80%;
+  margin: auto;
+}
+
+.login_id input {
+  width: 100%;
+  height: 50px;
+  border-radius: 15px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid #609966;
+  outline: none;
+}
+
+.login_pw {
+  margin-top: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login_pw input {
+  width: 100%;
+  height: 50px;
+  border-radius: 15px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid #609966;
+  outline: none;
+}
+
+.login_etc {
+  padding: 10px;
+  width: 80%;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit {
+  margin-top: 50px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.submit input {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  outline: none;
+  border-radius: 15px;
+  background: #609966;
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  cursor: pointer;
+}

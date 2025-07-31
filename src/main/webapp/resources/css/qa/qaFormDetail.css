@@ -1,0 +1,252 @@
+@charset "UTF-8";
+textarea {
+	resize: none;
+}
+#container { 
+	width: 700px; margin: auto; 
+	margin-bottom: 3%; /************************ 11/29 수정함! */
+	}
+	
+	
+	
+/********* 11/29 추가함! **********/
+.commentContainerWrapper {
+    display: flex; /* 자식 요소를 수평으로 배치 */
+    align-items: flex-start; /* 수직 정렬을 위해 말풍선을 위로 정렬 */
+	}
+
+.commentContainer {
+    position: relative;
+    background-color: #fff; /* 배경 색상 */
+    border: 1px solid #ddd; /* 테두리 색상 */
+    padding: 15px; /* 내부 여백 */
+    border-radius: 10px; /* border-radius를 이용해 말풍선 형태로 만듦 */
+    margin-left: 21px; /* 이미지와 말풍선 사이의 간격을 조절 */
+
+	}
+
+.commentContainer::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -21px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #ddd transparent transparent;
+    display: block; /* 블록 요소로 만듦 */
+    border-radius: 0; /* 네모 모양을 방지하기 위해 border-radius를 0으로 설정 */
+	}
+
+
+
+.button-link {
+	display: inline-block;
+    padding: 10px 20px;
+    background-color: #f7f5f5;
+    color: #8a8888;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px; /* 원하는 간격으로 조절하세요 */
+	}
+
+.button-link:hover {
+    background-color: #a3a2a2;
+    }
+
+/****************************************/
+
+
+
+
+h1, h3 { 
+	
+	display: flex;
+    grid-gap: 1rem;
+    gap: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.7rem;
+    letter-spacing: -1%;
+    color: var(--seed-scale-color-gray-900);
+    align-items: center;
+    margin-left: -5rem;
+    padding: 0 1.6rem 0.1rem 1.6rem;
+    width: 100;
+    border-bottom: 1px solid var(--seed-scale-color-gray-200); 
+	
+	
+}
+
+
+table { 
+	border-collapse: collapse; 
+}
+
+
+table, th, td {
+	border: 1px solid black;
+	margin: 0 auto;
+}
+
+th { 
+	background-color: orange; 
+}
+
+.center { 
+	text-align: center; 
+}
+	
+.border-none, .border-none td { 
+	border: none; 
+}
+
+
+html, body, div, span, object, iframe, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+body {
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Pretendard";
+}
+
+/* HEADER 부분 */
+.fb__communityDetail__header {
+    padding: 0rem;
+    margin: 0rem;
+    border-bottom: 1px solid #eeeeee;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    letter-spacing: -0.02187rem;
+}
+
+header {
+    display: block;
+}
+
+
+
+
+
+/* Title 부분 */
+.fb__communityDetail__header .header__title {
+    color: #111111;
+    font-size: 1.7rem;
+    line-height: 1.4375rem;
+    margin-left: 0;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+/* Date 부분 */
+.fb__communityDetail__header .header__info__date {
+    display: inline-block;
+    color: #aaa;
+    font-size: 0.6875rem;
+    line-height: 0.8125rem;
+}
+
+
+/* Content 부분 */
+.fb__communityDetail__header {
+    padding: 0rem;
+    margin: 0rem;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.fb__communityDetail__contents {
+    padding: rem 0.9375rem 2.5rem;
+    white-space: break-all;
+}
+
+.fb__communityDetail__contents .contents__text.default {
+    margin-top: 0.625rem;
+    color: #111111;
+    font-size: 1.3rem;
+    line-height: 1.8rem;	/* 11/29 추가! */
+    white-space: pre-line;
+    word-break: break-all;
+    font-weight: lighter;
+    line-height: 0.8cm;	
+}
+
+
+
+/* Comments 댓글 부분 */
+.fb__communityDetail__comments {
+    padding: rem 0.9rem 2.5rem;		/* 11/29 수정함!!!!*/
+    border-top: 0.625rem solid #f8f8f8;
+}
+
+.fb__communityDetail__comments .comments__write__form {
+    position: relative;
+    padding: 0.9375rem 0.9375rem 3.4375rem;
+    background: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 0.25rem;
+    font-size: 0;
+}
+
+
+.fb__communityDetail__comments .comments__write__form {
+    position: relative;
+    padding: 0.9375rem 0.9375rem 3.4375rem;
+    background: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 0.25rem;
+    font-size: 0;
+}
+
+
+.fb__communityDetail__comments .comments__write__area {
+    width: 100%;
+    height: 4.375rem;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.fb__communityDetail__comments .comments__write__bottom {
+    display: flex;
+    position: absolute;
+    bottom: 0.9375rem;
+    left: 0.9375rem;
+    width: calc(100% - 1.875rem);
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.fb__communityDetail__comments .comments__write__byte .byte__current {
+    color: #111111;
+}
+
+.fb__communityDetail__comments .comments__write__button.button--save {
+    background: #f2f2f2;
+    color: #919494;
+    background-color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.fb__communityDetail__comments .comments__write__button {
+    padding: 0.5rem 0.9375rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    line-height: 0.875rem;
+}

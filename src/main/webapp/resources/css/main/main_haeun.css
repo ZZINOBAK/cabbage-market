@@ -1,0 +1,679 @@
+@charset "UTF-8";
+#alrimDeleteBtn{
+	margin-left: 244px;
+	background: inherit;
+}
+#alrimDeleteBtn:focus {
+	border: none;
+	outline: none;
+}
+#alrimDeleteBtn > img {
+	width: 20px;
+	height: 20px;
+}
+.alrimContainer b {
+	font-size: 16px;
+}
+.alrimContent{
+	font-size: 13px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 24px;
+    /* white-space: nowrap; */
+    width: 200px;
+    margin-top: 15px;
+    line-height: 13px;
+}
+
+#alrim {
+	right: 290px;
+	position: absolute;
+}
+#alrim ul {
+	width: 340px;
+}
+#alrimList .none-haeun-li {
+	height: 70px;
+	margin: 0 10px;
+	vertical-align: text-top;
+}
+.none-haeun-li > a > div {
+	width: 200px;
+}
+.none-haeun-li button {
+	background-color: inherit;
+}
+.none-haeun-a img {
+	object-fit: cover;
+	vertical-align: unset;
+}
+
+.none-haeun-a:hover *{
+	color: black;
+}
+
+.none-haeun-ul .firstLi {
+	margin: 0;
+}
+
+.div-haeun1 {
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    /* position: sticky; */
+    position: fixed;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 50px;
+    background: rgb(255, 255, 255);
+    z-index: 10;
+/*     border-bottom: 1px solid rgb(238, 238, 238);
+ */    top: 0px;
+    left: 0px;
+    padding-bottom: 0;
+}
+.div-haeun2 {
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    display: flex;
+    flex-direction: column;
+    width: 1024px;
+}
+.div-haeun3 {
+	text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 1024px;
+    width: 1073px;
+    height: 40px;
+}
+.a-haeun1 {
+	text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    background-color: transparent;
+    color: rgb(33, 33, 33);
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 28px;
+    width: 136px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 50px;
+    position: relative;
+    border: 2px solid #9dc08b;
+}
+.img-haeun1 {
+	text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    width: 136px;
+    aspect-ratio: auto 136 / 40;
+    height: 40px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    border-style: none;
+    vertical-align: bottom;
+}
+.div-haeun4 {
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    margin: 0px;
+    padding: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    border: 2px solid #9DC08B;
+    width: 460px;
+    height: 40px;
+    box-sizing: border-box;
+    position: relative;
+}
+.div-haeun5 {
+	text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 15px;
+}
+.input-haeun1 {
+	appearance: none;
+	color: rgb(102, 102, 102);
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    padding: 0px;
+    border: 0px;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    outline: 0px;
+    overflow: visible;
+    font-family: inherit;
+    font-size: 16px;
+    
+    line-height: 1.15;
+    margin: 0px;
+    writing-mode: horizontal-tb !important;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+.a-haeun2 {
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    background-color: transparent;
+    color: rgb(33, 33, 33);
+    text-decoration: none;
+    cursor: pointer;
+}
+.img-haeun2 {
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    width: 16px;
+    aspect-ratio: auto 16 / 16;
+    height: 16px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    border-style: none;
+    vertical-align: bottom;
+}
+.div-haeun6 {
+	position: relative;
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    display: flex;
+    flex-direction: row-reverse;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+}
+.button-haeun1 {
+    text-size-adjust: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.15;
+    margin: 0px;
+    overflow: visible;
+    text-transform: none;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    padding: 0px;
+    border: 0px;
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    margin-left: 30px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+}
+.img-haeun3 {
+    text-size-adjust: 100%;
+    text-transform: none;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    cursor: pointer;
+    width: 28px;
+    aspect-ratio: auto 23 / 24;
+    height: 30px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    border-style: none;
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+.a-haeun3 {
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    background-color: transparent;
+    color: rgb(33, 33, 33);
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 30px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+}
+.img-haeun4 {
+    text-size-adjust: 100%;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: -0.5px;
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    width: 23px;
+    aspect-ratio: auto 23 / 24;
+    height: 24px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    border-style: none;
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+.none-haeun {
+	position: relative;
+	display: none;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-family: Pretendard Variable,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    color: rgb(41 41 41/var(--tw-text-opacity));
+    list-style: none;
+    list-style-type: none;
+    word-break: keep-all;
+    font-size: 15px;
+    line-height: 1.25rem;
+    font-weight: 400;
+    box-sizing: border-box;
+    border: 0 solid #f9f9f9;
+}
+.none-haeun-ul {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-family: Pretendard Variable,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    --tw-text-opacity: 1;
+    color: rgb(41 41 41);
+    word-break: keep-all;
+    box-sizing: border-box;
+    border: 0 solid #f9f9f9;
+    list-style: none;
+    position: absolute;
+    top: 30px;
+    right: 65px;
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    background-color: rgb(255 255 255);
+    line-height: 1.25rem;
+    font-weight: 400;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 2px 3px rgba(0,0,0,.08);
+    margin-top: 47px;
+    z-index: 10;
+    left: -41px;
+    top: -10px;
+    width: 90px;
+    padding: 0;
+}
+.none-haeun-li {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-family: Pretendard Variable,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    --tw-text-opacity: 1;
+    color: rgb(41 41 41/var(--tw-text-opacity));
+    word-break: keep-all;
+    list-style: none;
+    --tw-bg-opacity: 1;
+    font-size: 15px;
+    line-height: 12px;
+    font-weight: 400;
+    box-sizing: border-box;
+    border: 0 solid #f9f9f9;
+    margin-left: 12px;
+    margin-right: 12px;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(156 163 175/var(--tw-border-opacity));
+    padding-top: 8px;
+    padding-bottom: 17px;
+}
+.none-haeun-ul li {
+	margin: 16px;
+}
+.none-haeun-li button{
+	margin-left: 0;
+    margin-right: 15px;
+    margin-top: 27px;
+}
+.none-haeun-a {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-feature-settings: normal;
+    -webkit-tap-highlight-color: transparent;
+    font-family: Pretendard Variable,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    --tw-text-opacity: 1;
+    word-break: keep-all;
+    list-style: none;
+    --tw-bg-opacity: 1;
+    font-size: 15px;
+    line-height: 13px;
+    font-weight: 400;
+    --tw-border-opacity: 1;
+    box-sizing: border-box;
+    border: 0 solid #f9f9f9;
+    color: inherit;
+    text-decoration: inherit;
+    margin-top: 10px;
+} 
+
+/* 캐나다 당근 */
+.canada-haeun1 {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    color: var(--seed-scale-color-gray-900);
+    font-family: -apple-system,BlinkMacSystemFont,Pretendard Variable,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    letter-spacing: var(--seed-scale-letter-spacing-none);
+    line-height: var(--seed-static-line-height-static-small);
+    box-sizing: border-box;
+    border: 0;
+    font-size: 21px;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: initial;
+    display: flex;
+    justify-content: space-between;
+}
+.canada-haeun2 {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,Pretendard Variable,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    letter-spacing: 0em;
+    line-height: 135%;
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: initial;
+    color: #40513B;
+    font-size: 21px;
+    font-weight: bold;
+    flex: 1;
+}
+.canada-haeun3 {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,Pretendard Variable,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    letter-spacing: 0em;
+    line-height: 135%;
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+    -webkit-tap-highlight-color: initial;
+    font-size: 21px;
+    font-weight: normal;
+    display: flex;
+
+}
+.canada-haeun4 {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,Pretendard Variable,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    letter-spacing: var(--seed-scale-letter-spacing-none);
+    line-height: var(--seed-static-line-height-static-small);
+    font-weight: var(--seed-static-font-weight-regular);
+    box-sizing: border-box;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: initial;
+    color: var(--seed-semantic-color-primary);
+    gap: .125rem;
+    display: flex;
+    align-items: center;
+}
+.canada-haeun5 {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,Pretendard Variable,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    letter-spacing: var(--seed-scale-letter-spacing-none);
+    line-height: var(--seed-static-line-height-static-small);
+    color: inherit;
+    font-weight: var(--seed-static-font-weight-regular);
+    box-sizing: border-box;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: initial;
+    display: flex;
+    align-items: center;
+}
+.canada-haeun6 {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,Pretendard Variable,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    letter-spacing: var(--seed-scale-letter-spacing-none);
+    line-height: var(--seed-static-line-height-static-small);
+    font-weight: var(--seed-static-font-weight-regular);
+    box-sizing: border-box;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: initial;
+    color: var(--seed-semantic-color-primary);
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+} 
+.alrim {
+	position: absolute;
+   	top: -8px;
+    right: 47px;
+    z-index: 10;
+    /* min-width: 7px; */
+    padding: 0 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.28);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.28);
+    border: 1px solid rgba(0,0,0,.04);
+    border-radius: 10px;
+    background-color: #f4361e;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+	
+}  
+#someElement[data-count="0"] .alrim, #someElement[data-count=""] .alrim {
+	display: none;
+} 
+
+#someElement .alrimCount {
+	right: 6px;
+}
+.button-haeun1 {
+	text-decoration: none;
+}   
+.button-haeun1:hover {
+	text-decoration: none;
+	color: black;
+}   
+#rollingNotice a, #showingNotice a {
+	font-size: 12px;
+	text-decoration: none;
+	color: black;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space : nowrap;
+}
+#showingNotice {
+	position: absolute;
+    left: -3px;
+    top: -2px;
+    background-color: white;
+    display: none;
+    border: 2px solid #9dc08b;
+    border-radius: 5px;
+    width: 133px;
+    margin: 0;
+    padding: 0;
+    box-sizing: unset;
+}
+.a-haeun1:hover #showingNotice {
+    display: block;
+}
+#showingNotice li {
+	margin: 0;
+}
+#showingNotice a { 
+	padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid #cecece;
+}
+#showingNotice li:last-of-type a{
+	border: none;
+}
+
+.a-haeun1 {
+	border: 2px solid #9dc08b;
+	border-radius: 5px;
+	padding-left: 15px;
+}

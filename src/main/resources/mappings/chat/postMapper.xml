@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+
+	<select id="getPost" resultType="postVO" parameterType="postVO">
+		SELECT 
+		      P.POST_ID
+		    , P.POST_STATUS
+		    , PP.SELLER_ID, PP.POST_CAT_ID, PP.POST_TITLE, PP.POST_PRICE, PP.POST_CONTENT, PP.POST_REGDATE, PP.POST_VIEWS, PP.BUYER_ID
+		    , (SELECT FILE_NAME FROM FILES WHERE FILE_ID = (SELECT MIN(FILE_ID) FROM POST_PIC WHERE POST_ID = PP.POST_ID )) POST_PIC
+		FROM
+		    POST P
+		LEFT JOIN
+		    (SELECT * FROM POST WHERE POST_STATUS != 'DELETE') PP
+		ON
+		    PP.POST_ID = P.POST_ID
+		WHERE
+		    P.POST_ID = #{postId}
+	</select>
+	
+</mapper>

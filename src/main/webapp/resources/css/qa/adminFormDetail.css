@@ -1,0 +1,251 @@
+@charset "UTF-8";
+textarea {
+	resize: none;
+}
+#container { 
+	width: 700px; margin: auto; 
+}
+
+input[type="submit"] {
+    display: block;
+    padding: 0.3rem 0.6rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+    background-color: #f7f5f5;
+    border: none;
+    color: var(--seed-scale-color-gray-900);
+    font-weight: 700;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-top: 1.6rem;
+}
+
+/* 마우스 오버 시 색상 변화 */
+input[type="submit"]:hover {
+    background-color: #dcdcdc; /* 마우스 오버 시 배경색 변경 */
+}
+
+
+
+
+
+h1 { 
+	
+	display: flex;
+    grid-gap: 1rem;
+    gap: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.7rem;
+    letter-spacing: -1%;
+    color: var(--seed-scale-color-gray-900);
+    align-items: center;
+    margin-left: -5rem;
+    padding: 0 1.6rem 0.1rem 1.6rem;
+    width: 100;
+    border-bottom: 1px solid var(--seed-scale-color-gray-200); 
+}
+
+
+textarea[name="qaComment"] {
+    width: 100%;
+    height: 100px; /* 원하는 높이로 조절 */
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* 투명도가 있는 흰색 배경 */
+    resize: vertical; /* 높이만 조절 가능하도록 설정 */
+}
+
+/* 선택한 경우의 스타일 (예: focus, hover) */
+textarea[name="qaComment"]:focus,
+textarea[name="qaComment"]:hover {
+    border-color: #dcdcdc; /* 원하는 색상으로 변경 */
+    background-color: rgba(255, 255, 255, 1); /* 선택 시 배경색 */
+}
+
+
+.center { 
+	text-align: center; 
+}
+	
+.border-none, .border-none td { 
+	border: none; 
+}
+
+
+html, body, div, span, object, iframe, h2, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    padding: 0rem 0rem 0rem;	/* 11/29 추가 */
+}
+body {
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Pretendard";
+}
+
+/* HEADER 부분 */
+.fb__communityDetail__header {
+    padding: 1.25rem 0 0.75rem;
+    margin: 0 0.9375rem;
+    border-bottom: 1px solid #eeeeee;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: content-box;
+    letter-spacing: -0.02187rem;
+}
+
+header {
+    display: block;
+}
+
+
+
+
+
+/* Title 부분 */
+.fb__communityDetail__header .header__title {
+    color: #111111;
+    font-size: 1.7rem;
+    line-height: 1.4375rem;
+    margin-left: 0rem;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding: 0.1rem 0.9rem 0rem;	/* 11/29 추가 */
+}
+
+/* Date 부분 */
+.fb__communityDetail__header .header__info__date {
+    display: inline-block;
+    color: #aaa;
+    font-size: 0.6875rem;
+    line-height: 0.8125rem;
+}
+
+
+/* Content 부분 */
+.fb__communityDetail__header {
+    padding: 0rem 0rem 0rem 0rem;
+    margin: 0rem;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.fb__communityDetail__contents {
+    padding: 0rem;
+    white-space: break-all;
+    margin-top: 2rem;
+    margin-bottom: 7rem;
+}
+
+.fb__communityDetail__contents .contents__text.default {
+    margin-top: 0.625rem;
+    color: #111111;
+    font-size: 1.3rem;
+    line-height: 1.125rem;
+    white-space: pre-line;
+    word-break: break-all;
+    font-weight: lighter;
+}
+
+
+
+/* Comments 댓글 부분 */
+.fb__communityDetail__comments {
+    padding: 1.25rem 0;
+    border-top: 0.625rem solid #f8f8f8;
+}
+
+.fb__communityDetail__comments .comments__write__form {
+    position: relative;
+    padding: 0.9375rem 0.9375rem 3.4375rem;
+    background: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 0.25rem;
+    font-size: 0;
+}
+
+
+.fb__communityDetail__comments .comments__write__form {
+    position: relative;
+    padding: 0.9375rem 0.9375rem 3.4375rem;
+    background: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 0.25rem;
+    font-size: 0;
+}
+
+
+.fb__communityDetail__comments .comments__write__area {
+    width: 100%;
+    height: 4.375rem;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.fb__communityDetail__comments .comments__write__bottom {
+    display: flex;
+    position: absolute;
+    bottom: 0.9375rem;
+    left: 0.9375rem;
+    width: calc(100% - 1.875rem);
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.fb__communityDetail__comments .comments__write__byte .byte__current {
+    color: #111111;
+}
+
+.fb__communityDetail__comments .comments__write__button.button--save {
+    background: #f2f2f2;
+    color: #919494;
+    background-color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.fb__communityDetail__comments .comments__write__button {
+    padding: 0.5rem 0.9375rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    line-height: 0.875rem;
+}
+
+
+
+.button-link {
+	display: inline-block;
+    padding: 10px 20px;
+    background-color: #f7f5f5;
+    color: #8a8888;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px; /* 원하는 간격으로 조절하세요 */
+	}
+
+.button-link:hover {
+    background-color: #a3a2a2;
+    }
+

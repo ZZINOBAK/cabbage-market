@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userDAO">
+
+	<select id="getUser" parameterType="user"
+		resultType="user">
+		SELECT * FROM USERS WHERE USER_ID = #{userId} AND USER_PASSWORD = #{userPassword}
+	</select>
+	
+	<select id="getUserByIdAndEmail" parameterType="user"
+		resultType="user">
+		SELECT * FROM USERS WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
+	</select>
+	
+	<insert id="joinUser"  parameterType="user">
+		INSERT INTO USERS(USER_ID, USER_PASSWORD, USER_NAME, USER_NICKNAME, USER_PHONE, USER_EMAIL)
+		VALUES(#{userId}, #{userPassword}, #{userName}, #{userNickname}, #{userPhone}, #{userEmail})
+	</insert>
+	
+	<select id="selectId" resultType="boolean">	
+		SELECT COUNT(*) FROM USERS WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="selectNick" resultType="boolean">
+		SELECT COUNT(*) FROM USERS WHERE USER_NICKNAME = #{userNickname}
+	</select>
+	
+	<select id="selectPhone" resultType="boolean">
+		SELECT COUNT(*) FROM USERS WHERE USER_Phone = #{userPhone}
+	</select>
+	
+	<select id="findId" parameterType="user" resultType="user">
+		SELECT USER_ID FROM USERS 
+		WHERE USER_NAME = #{userName} 
+		AND
+		USER_PHONE = #{userPhone}
+	</select>
+	
+	<select id="findPw" parameterType="user" resultType="user">
+		SELECT USER_PASSWORD FROM USERS 
+		WHERE USER_EMAIL = #{userEmail}
+		AND
+		USER_ID = #{userId}
+	</select>
+	
+	<select id="purchaseList" parameterType="user" resultType="user">
+		SELECT POST_ID, POST_TITLE, POST_PRICE, FILE_NAME, POST_REGDATE, POST_STATUS, REVIEW
+      FROM (
+       SELECT P.POST_ID, P.POST_TITLE, P.POST_PRICE, F.FILE_NAME, P.POST_REGDATE, P.POST_STATUS,
+        ROW_NUMBER() OVER(PARTITION BY P.POST_ID ORDER BY F.FILE_ID) AS RN, P.REVIEW
+       FROM USERS U, POST P, POST_PIC PP, FILES F
+       WHERE U.USER_ID = P.BUYER_ID
+       AND P.POST_ID = PP.POST_ID
+       AND F.FILE_ID = PP.FILE_ID
+       AND P.POST_STATUS != 'DELETE'
+       AND U.USER_ID = #{userId}
+      )
+      WHERE RN = 1
+      ORDER BY POST_ID DESC
+	</select>
+	
+	<!-- 임시방편으로 9시간 추가해서 가져옴 (오라클 시간 안맞는 문제) -->
+	<select id="salesList" parameterType="user" resultType="user">
+		SELECT POST_ID, POST_TITLE, POST_PRICE, FILE_NAME, (POST_REGDATE + (9 / 24)) POST_REGDATE, POST_STATUS
+      FROM (
+       SELECT P.POST_ID, P.POST_TITLE, P.POST_PRICE, F.FILE_NAME, P.POST_REGDATE, P.POST_STATUS,
+        ROW_NUMBER() OVER(PARTITION BY P.POST_ID ORDER BY F.FILE_ID) AS RN
+       FROM USERS U, POST P, POST_PIC PP, FILES F
+       WHERE U.USER_ID = P.SELLER_ID
+       AND P.POST_ID = PP.POST_ID
+       AND F.FILE_ID = PP.FILE_ID
+       AND P.POST_STATUS != 'DELETE'
+       AND U.USER_ID = #{userId}
+      )
+      WHERE RN = 1
+      ORDER BY POST_ID DESC
+	</select>	
+	
+	<select id="wishList" parameterType="user" resultType="user">
+		SELECT POST_ID, POST_TITLE, POST_PRICE, FILE_NAME, POST_REGDATE, POST_STATUS
+       FROM (
+        SELECT P.POST_ID, P.POST_TITLE, P.POST_PRICE, F.FILE_NAME, P.POST_REGDATE, P.POST_STATUS,
+        ROW_NUMBER() OVER(PARTITION BY P.POST_ID ORDER BY F.FILE_ID) AS RN
+        FROM USERS U, POST P, POST_PIC PP, POST_WISH_LIST PL, FILES F
+        WHERE PP.POST_ID = PL.POST_ID
+        AND P.POST_ID = PP.POST_ID
+        AND U.USER_ID = PL.USER_ID
+        AND F.FILE_ID = PP.FILE_ID
+        AND P.POST_STATUS != 'DELETE'
+        AND U.USER_ID = #{userId}
+       )
+       WHERE RN = 1
+       ORDER BY POST_ID DESC
+	</select>
+	
+	<select id="userInfo" parameterType="user" resultType="user">
+		SELECT U.*, F.FILE_NAME USER_PROFILE
+		FROM 
+			USERS U
+		LEFT JOIN
+			PROFILE_PIC P
+		ON P.USER_ID = U.USER_ID
+		LEFT JOIN
+			FILES F
+		ON F.FILE_ID = P.FILE_ID
+		WHERE 
+			U.USER_ID = #{userId}
+	</select>
+	
+	<update id="userUpdate" parameterType="user">
+		UPDATE USERS
+			SET USER_NICKNAME = #{userNickname},
+				USER_PASSWORD = #{userPassword},
+				USER_PHONE = #{userPhone}
+		WHERE USER_ID = #{userId}
+	</update>
+	<update id="profileUpload" parameterType="user">
+		<selectKey keyProperty="fileIdCount" resultType="long" order="BEFORE">
+			SELECT COUNT(FILE_ID) FILE_ID_COUNT FROM PROFILE_PIC WHERE USER_ID = #{userId}
+		</selectKey>
+		<if test="fileIdCount > 0">
+			UPDATE FILES
+			SET 
+				FILE_NAME = #{fileName}
+			WHERE
+				FILE_ID = (SELECT FILE_ID FROM PROFILE_PIC WHERE USER_ID = #{userId})
+		</if>
+		<if test="fileIdCount == 0">
+			INSERT ALL
+			INTO FILES
+			    (FILE_ID, USER_ID, FILE_NAME, FILE_REGDATE)
+			VALUES
+			    (FILE_ID_SEQ.NEXTVAL, #{userId}, #{fileName}, SYSDATE)
+			
+			INTO PROFILE_PIC
+			    (USER_ID, FILE_ID)
+			VALUES
+			    (#{userId}, FILE_ID_SEQ.CURRVAL)
+			SELECT * FROM DUAL
+		</if>
+	</update>	
+	
+	<update id="deleteUser" parameterType="user">
+		UPDATE USERS 
+		SET USER_STATUS = 'WITHDRAWAL'
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<insert id="wishKeyword">
+		INSERT INTO WISH_KEYWORD(USER_ID, WISH_KEYWORD)
+    	VALUES (#{userId}, #{wishKeyword})
+	</insert>
+	
+	<delete id="deleteWish" parameterType="user">
+		DELETE FROM POST_WISH_LIST WHERE USER_ID = #{userId} AND POST_ID = #{postId}
+	</delete>
+	
+	<delete id="deleteWishKeyword" parameterType="user">
+		DELETE FROM WISH_KEYWORD WHERE USER_ID = #{userId} AND WISH_KEYWORD = #{wishKeyword}
+	</delete>
+	
+	<select id="keywordList" parameterType="user" resultType="user">
+		SELECT * FROM WISH_KEYWORD 
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<update id="ondoUpDown" parameterType="user">
+        UPDATE USERS U
+        SET U.USER_ONDO = U.USER_ONDO + #{incrementValue}
+        WHERE EXISTS (
+    	SELECT 1	
+    	FROM POST P
+    	WHERE U.USER_ID = P.SELLER_ID
+    	AND P.POST_ID = #{postId}
+		)
+		<selectKey keyProperty="sellerId" order="AFTER" resultType="String">
+			SELECT SELLER_ID FROM POST WHERE POST_ID = #{postId}
+		</selectKey>
+    </update>
+    
+    <update id="reviewInput">
+    	UPDATE POST
+    	SET REVIEW = '1'
+    	WHERE POST_ID = #{postId}
+    </update>
+	
+</mapper>

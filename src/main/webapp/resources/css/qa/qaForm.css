@@ -1,0 +1,688 @@
+@charset "UTF-8";
+textarea {
+	resize: none;
+}
+
+
+@media (prefers-color-scheme: light)
+:root {
+    --seed-scale-color-gray-00: #ffffff;
+    --seed-scale-color-gray-50: #f7f8fa;
+    --seed-scale-color-gray-100: #f2f3f6;
+    --seed-scale-color-gray-200: #eaebee;
+    --seed-scale-color-gray-300: #dcdee3;
+    --seed-scale-color-gray-400: #d1d3d8;
+    --seed-scale-color-gray-500: #adb1ba;
+    --seed-scale-color-gray-600: #868b94;
+    --seed-scale-color-gray-700: #4d5159;
+    --seed-scale-color-gray-800: #393A40;
+    --seed-scale-color-gray-900: #212124;
+    --seed-scale-color-carrot-50: #fff5f0;
+    --seed-scale-color-carrot-100: #FFE2D2;
+    --seed-scale-color-carrot-200: #ffd2b9;
+    --seed-scale-color-carrot-300: #ffbc97;
+    --seed-scale-color-carrot-400: #ff9e66;
+    --seed-scale-color-carrot-500: #ff6f0f;
+    --seed-scale-color-carrot-600: #fa6616;
+    --seed-scale-color-carrot-700: #f05705;
+    --seed-scale-color-carrot-800: #cc4700;
+    --seed-scale-color-carrot-900: #b44104;
+    --seed-scale-color-carrot-950: #a03a03;
+    --seed-scale-color-blue-50: #EBF7FA;
+    --seed-scale-color-blue-100: #D2EDFA;
+    --seed-scale-color-blue-200: #B9E3FA;
+    --seed-scale-color-blue-300: #87D7FF;
+    --seed-scale-color-blue-400: #57C7FF;
+    --seed-scale-color-blue-500: #009CEB;
+    --seed-scale-color-blue-600: #0088CC;
+    --seed-scale-color-blue-700: #0077B2;
+    --seed-scale-color-blue-800: #006199;
+    --seed-scale-color-blue-900: #004C73;
+    --seed-scale-color-blue-950: #003B59;
+    --seed-scale-color-red-50: #FFF3F2;
+    --seed-scale-color-red-100: #FFE5E3;
+    --seed-scale-color-red-200: #FCD2CF;
+    --seed-scale-color-red-300: #FFACA6;
+    --seed-scale-color-red-400: #FF7E75;
+    --seed-scale-color-red-500: #FF4133;
+    --seed-scale-color-red-600: #FA2314;
+    --seed-scale-color-red-700: #E81607;
+    --seed-scale-color-red-800: #A62014;
+    --seed-scale-color-red-900: #910C00;
+    --seed-scale-color-red-950: #821006;
+    --seed-scale-color-green-50: #E8FAF6;
+    --seed-scale-color-green-100: #C7F2E4;
+    --seed-scale-color-green-200: #96EBC3;
+    --seed-scale-color-green-300: #6ADEAC;
+    --seed-scale-color-green-400: #30C795;
+    --seed-scale-color-green-500: #1AA174;
+    --seed-scale-color-green-600: #128C6E;
+    --seed-scale-color-green-700: #077A5E;
+    --seed-scale-color-green-800: #06614A;
+    --seed-scale-color-green-900: #004F40;
+    --seed-scale-color-green-950: #004034;
+    --seed-scale-color-yellow-50: #fff7e6;
+    --seed-scale-color-yellow-100: #FFE3BA;
+    --seed-scale-color-yellow-200: #FACC87;
+    --seed-scale-color-yellow-300: #F7BE68;
+    --seed-scale-color-yellow-400: #DEA651;
+    --seed-scale-color-yellow-500: #C27F29;
+    --seed-scale-color-yellow-600: #A66C21;
+    --seed-scale-color-yellow-700: #805217;
+    --seed-scale-color-yellow-800: #6B4717;
+    --seed-scale-color-yellow-900: #593D17;
+    --seed-scale-color-yellow-950: #4D361A;
+    --seed-scale-color-pink-50: #FFF5F5;
+    --seed-scale-color-pink-100: #FFDDDB;
+    --seed-scale-color-pink-200: #FFBFC5;
+    --seed-scale-color-pink-300: #FFADB4;
+    --seed-scale-color-pink-400: #FF8A9D;
+    --seed-scale-color-pink-500: #F0657C;
+    --seed-scale-color-pink-600: #DB4B6A;
+    --seed-scale-color-pink-700: #BD2B5C;
+    --seed-scale-color-pink-800: #991C45;
+    --seed-scale-color-pink-900: #800D3D;
+    --seed-scale-color-pink-950: #660A30;
+    --seed-scale-color-purple-50: #F6F4FE;
+    --seed-scale-color-purple-100: #E3DAFE;
+    --seed-scale-color-purple-200: #D5C7FF;
+    --seed-scale-color-purple-300: #CFBFFF;
+    --seed-scale-color-purple-400: #B69EFF;
+    --seed-scale-color-purple-500: #9675FA;
+    --seed-scale-color-purple-600: #8361E8;
+    --seed-scale-color-purple-700: #6748C7;
+    --seed-scale-color-purple-800: #4F3699;
+    --seed-scale-color-purple-900: #3F2687;
+    --seed-scale-color-purple-950: #331E70;
+    --seed-scale-color-gray-alpha-50: #0000000d;
+    --seed-scale-color-gray-alpha-100: #0000001a;
+    --seed-scale-color-gray-alpha-200: #00000033;
+    --seed-scale-color-gray-alpha-500: #00000080;
+    --seed-scale-color-carrot-alpha-50: #ff6f0f0d;
+    --seed-scale-color-carrot-alpha-100: #ff6f0f24;
+    --seed-scale-color-carrot-alpha-200: #ff6f0f33;
+    --seed-scale-color-blue-alpha-50: #009CEB0d;
+    --seed-scale-color-blue-alpha-100: #009CEB1a;
+    --seed-scale-color-blue-alpha-200: #009CEB33;
+    --seed-scale-color-red-alpha-50: #FF41330d;
+    --seed-scale-color-red-alpha-100: #FF41331a;
+    --seed-scale-color-red-alpha-200: #FF413333;
+    --seed-scale-color-yellow-alpha-50: #F7BE6814;
+    --seed-scale-color-yellow-alpha-100: #F7BE6824;
+    --seed-scale-color-yellow-alpha-200: #F7BE683d;
+    --seed-scale-color-green-alpha-50: #1AA1740d;
+    --seed-scale-color-green-alpha-100: #1AA17424;
+    --seed-scale-color-green-alpha-200: #1AA17433;
+    --seed-semantic-color-primary: var(--seed-scale-color-carrot-500);
+    --seed-semantic-color-primary-low: var(--seed-scale-color-carrot-alpha-100);
+    --seed-semantic-color-secondary: var(--seed-scale-color-gray-900);
+    --seed-semantic-color-secondary-low: var(--seed-scale-color-gray-alpha-50);
+    --seed-semantic-color-success: var(--seed-scale-color-green-500);
+    --seed-semantic-color-success-low: var(--seed-scale-color-green-alpha-50);
+    --seed-semantic-color-warning: var(--seed-scale-color-yellow-400);
+    --seed-semantic-color-warning-low: var(--seed-scale-color-yellow-alpha-100);
+    --seed-semantic-color-danger: var(--seed-scale-color-red-600);
+    --seed-semantic-color-danger-low: var(--seed-scale-color-red-alpha-50);
+    --seed-semantic-color-paper-sheet: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-dialog: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-floating: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-contents: var(--seed-scale-color-gray-50);
+    --seed-semantic-color-paper-default: var(--seed-scale-color-gray-00);
+    --seed-semantic-color-paper-background: var(--seed-scale-color-gray-100);
+    --seed-semantic-color-paper-accent: var(--seed-scale-color-carrot-50);
+    --seed-semantic-color-primary-hover: var(--seed-scale-color-carrot-400);
+    --seed-semantic-color-primary-pressed: var(--seed-scale-color-carrot-400);
+    --seed-semantic-color-primary-low-hover: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-primary-low-active: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-primary-low-pressed: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-gray-hover: var(--seed-scale-color-gray-100);
+    --seed-semantic-color-gray-pressed: var(--seed-scale-color-gray-100);
+    --seed-semantic-color-on-primary-low-overlay-50: var(--seed-scale-color-carrot-alpha-50);
+    --seed-semantic-color-on-primary-low-overlay-100: var(--seed-scale-color-carrot-alpha-100);
+    --seed-semantic-color-on-primary-low-overlay-200: var(--seed-scale-color-carrot-alpha-200);
+    --seed-semantic-color-on-gray-overlay-50: var(--seed-scale-color-gray-alpha-50);
+    --seed-semantic-color-on-gray-overlay-100: var(--seed-scale-color-gray-alpha-100);
+    --seed-semantic-color-text-selection: var(--seed-scale-color-carrot-50);
+    --seed-semantic-color-divider-1: var(--seed-scale-color-gray-alpha-50);
+    --seed-semantic-color-divider-2: var(--seed-scale-color-gray-200);
+    --seed-semantic-color-divider-3: var(--seed-scale-color-gray-300);
+    --seed-semantic-color-accent: var(--seed-scale-color-blue-500);
+    --seed-semantic-color-ink-text: var(--seed-scale-color-gray-900);
+    --seed-semantic-color-ink-text-low: var(--seed-scale-color-gray-600);
+    --seed-semantic-color-gray-active: var(--seed-scale-color-gray-700);
+}
+
+html[Attributes Style] {
+    -webkit-locale: "ko";
+}
+
+
+:root {
+    color-scheme: light dark;
+}
+
+.feedback-form[data-v-8b136b14] {
+    display: grid;
+    height: 100vh;
+}
+
+html {
+    display: block;
+}
+
+
+
+
+
+
+/* 상단 부분 -------------------------------------- */
+p {
+    line-height: 1.6;
+}
+
+
+p {
+    display: block;
+    margin-block-start: 2em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.feedbacks-text[data-v-8b136b14] {
+    font-size: 15px;
+    margin: 24px 20px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html[Attributes Style] {
+    -webkit-locale: "ko";
+}
+
+:root {
+    view-transition-name: root;
+}
+
+html {
+    display: block;
+}
+
+/* body ---------------------------------------------- */
+body {
+    min-width: 320px;
+    max-width: 768px;
+    margin: 0 auto;
+    color: var(--seed-scale-color-gray-900);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+
+/* 제목 입력 부분 ----------------------------------------------- */
+.feedback-form .phone[data-v-8b136b14] {
+    width: 100%;
+    border: 1px solid #EAEBEE;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-size: 16px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 16px;
+    background: transparent;
+}
+input {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+input[type="text" i] {
+    writing-mode: horizontal-tb !important;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+user agent stylesheet
+input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+}
+user agent stylesheet
+input {
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.feedback-form .phone-container[data-v-8b136b14] {
+    margin: 0 16px 16px;
+}
+
+
+
+
+
+
+/* 내용 입력 부분 ----------------------------------------------- */
+.textarea > textarea[data-v-38784853] {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    overflow-y: scroll;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 16px;
+    color: var(--seed-scale-color-gray-900);
+    background-color: transparent;
+    font-family: -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+
+.textarea[data-v-38784853] {
+    border: 1px solid #EAEBEE;
+    box-sizing: border-box;
+    border-radius: 6px;
+    height: 100%;
+    /*padding: 16px 16px 300px 16px;*/
+    margin: 0 16px 43px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+user agent stylesheet
+div {
+    display: block;
+}
+
+
+.counter[data-v-38784853] {
+    position: relative;
+    margin: -70px 30px -10px auto;
+    text-align: right;
+    color: gray;
+    font-size: 12px;
+}
+
+
+p {
+    line-height: 1.6;
+}
+
+/* 사진 업로드 부분 ----------------------------------------------- */
+
+.picture-count[data-v-8b136b14] {
+    font-size: 13px;
+    margin-bottom: -10px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+user agent stylesheet
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+
+.photos[data-v-8b136b14] {
+    display: flex;
+    margin: 0px 16px 16px 16px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-top: 33px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.photo-input[data-v-8b136b14] {
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+    background: var(--seed-scale-color-gray-00);
+    border: 1px solid #EAEBEE;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    color: #868B94;
+    margin-right: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+user agent stylesheet
+button {
+    appearance: auto;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* 사진업로드 & 안내사항 사이의 공간  ----------------------------------------------- */
+
+hr.solid[data-v-8b136b14] {
+    border-top: 1px solid #F2F3F6;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    margin: 0 16px;
+}
+
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+
+
+
+
+
+
+
+/* grid template ----------------------------------------------- */
+element.style {
+    grid-template-rows: max-content max-content minmax(188px, 1fr) max-content max-content max-content;
+}
+
+.feedback-form[data-v-8b136b14] {
+    display: grid;
+    height: 100vh;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+/* 안내사항 부분 ------------------------------------------------ */
+.notice[data-v-8b136b14] {
+    margin-top: 15px;
+    padding: 0 16px;
+}
+
+.bullet-title[data-v-31d3de98] {
+    font-size: 12px;
+    font-weight: bold;
+    color: #868B94;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    line-height: 1.6;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+.bullet-list > li[data-v-31d3de98] {
+    color: #868B94;
+    font-size: 12px;
+    padding: 0 10px;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+style attribute {
+    word-break: keep-all;
+}
+user agent stylesheet
+ul {
+    list-style-type: disc;
+}
+
+
+.bullet-list > li[data-v-31d3de98]:before {
+    content: "·";
+    font-size: 15px;
+    vertical-align: middle;
+    line-height: 20px;
+    margin: 4px 4px 4px -8px;
+    color: #868B94;
+}
+.bullet-list > li[data-v-31d3de98]::marker {
+    font-size: 0;
+}
+user agent stylesheet
+::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+}
+
+
+
+
+
+/* 문의하기 버튼 부분 ------------------------------------------- */
+.feedback-form>.submit[data-v-8b136b14]:disabled {
+    background: #DCDEE3;
+}
+.feedback-form>.submit[data-v-8b136b14] {
+    padding: 10px;
+    border-radius: 6px;
+    width: calc(100% - 32px);
+    border: none;
+    background: #a2d690;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 16px auto;
+    margin-left: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+user agent stylesheet
+button:disabled {
+    background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
+    color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+    border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+}
+user agent stylesheet
+button {
+    appearance: auto;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+
+
+
+/* 문의하기 버튼 밑에 공간 --------------------------------------- */
+#bottom-safe-area[data-v-8b136b14] {
+    height: 32px;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+
+
+
+
+
+
+
+
+

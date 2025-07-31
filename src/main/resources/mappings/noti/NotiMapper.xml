@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notiDAO">
+
+	<select id="getNotiListById" parameterType="String" resultType="noti">
+	SELECT  *
+	FROM (
+	    SELECT n.*, f.file_name
+            FROM notification n
+            LEFT JOIN (
+                SELECT pp.post_id, MIN(pp.file_id) AS min_file_id
+                FROM post_pic pp
+                GROUP BY pp.post_id
+            ) min_pp ON n.post_id = min_pp.post_id
+            LEFT JOIN files f ON min_pp.min_file_id = f.file_id
+            WHERE n.user_id = #{userId}
+            ORDER BY n.noti_date DESC
+	)
+	WHERE ROWNUM &lt;= 20
+	ORDER BY noti_date DESC
+	</select>
+	
+	<!-- 알람 개수 조회하기 by 아이디 -->
+	<select id="getNotiCountById" parameterType="String" resultType="int">
+	SELECT COUNT(*) as row_count
+	FROM notification
+	where user_id = #{id} and noti_status = 'UNREAD'
+	</select>
+	
+	<!-- 가격 내린 찜상품 확인하기 -->
+	<select id="checkPostWishList" parameterType="int" resultType="String">
+	SELECT wl.user_id
+	FROM post p
+	JOIN post_wish_list wl ON p.post_id = wl.post_id
+	WHERE p.post_id = #{postId}
+	</select>
+	
+	<!-- 찜상품 알림용 사진 뽑아내기 -->
+	<select id="getPostPicForNoti" parameterType="int" resultType="String">
+	SELECT MIN(files.file_name) AS lowest_file_name
+	FROM post
+	JOIN post_pic ON post.post_id = post_pic.post_id
+	JOIN files ON post_pic.file_id = files.file_id
+	WHERE post.post_id = #{postId}
+	GROUP BY post.post_id
+	</select>
+	
+	<!-- 온도변동 알림용 판매제목 뽑아내기 -->
+	<select id="getPostTitleForNoti" parameterType="int" resultType="String">
+	SELECT post_title
+	FROM post
+	WHERE post_id = #{postId}
+	</select>
+	
+	<!-- 관심상품 포스팅 되었는지 확인하기 -->
+	<select id="checkWishKeyWord" parameterType="map" resultType="map">
+	SELECT wish_keyword.user_id, MAX(wish_keyword.wish_keyword) AS wish_keyword
+    FROM post
+    JOIN wish_keyword 
+    ON #{postTitle} LIKE '%' || wish_keyword.wish_keyword || '%' 
+    OR #{postContent} LIKE '%' || wish_keyword.wish_keyword || '%'
+    GROUP BY wish_keyword.user_id
+	</select>
+	
+	<!-- notification insert -->
+	<insert id="insertNoti" parameterType="noti">
+	<selectKey keyProperty="notiId" resultType="Long" order="AFTER">
+        SELECT noti_id_seq.CURRVAL FROM DUAL
+    </selectKey>
+	INSERT INTO NOTIFICATION (
+	  NOTI_ID,
+	  USER_ID,
+	  POST_ID,
+	  QA_ID,
+	  NOTI_TYPE,
+	  NOTI_CONTENT,
+	  NOTI_URL,
+	  NOTI_DATE
+	) VALUES
+		(noti_id_seq.NEXTVAL, 
+		#{userId}, #{postId}, #{qaId}, #{notiType}, #{notiContent}, #{notiUrl}, 
+		SYSDATE
+	)
+	</insert>
+
+	<update id="updateNoti" parameterType="String">
+	UPDATE NOTIFICATION
+	SET NOTI_STATUS = 'READ'
+	WHERE USER_ID = #{id}
+	</update>
+	
+	<delete id="deleteNoti" parameterType="long">
+	    DELETE FROM NOTIFICATION
+	    WHERE NOTI_ID = #{notiId}
+	</delete>
+
+	
+</mapper>
+	

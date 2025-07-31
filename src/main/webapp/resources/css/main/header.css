@@ -1,0 +1,354 @@
+.div-haeun6 .button-haeun1:focus{
+	border: none;
+	outline: none;
+}
+.search-input {
+	display: inline-block; /* inline-block으로 설정 */
+	width: 300px;
+	box-sizing: border-box;
+	padding: 10px;
+	margin: 0;
+}
+
+#clearSearchInput {
+	position: absolute; /* 또는 position: relative; 또는 다른 위치 지정 속성 사용 */
+	right: 36px; /* 원하는 위치로 조절 */
+	top: 45%; /* 세로 중앙 정렬을 위한 조절 */
+	transform: translateY(-50%); /* 세로 중앙 정렬을 위한 조절 */
+	cursor: pointer;
+	display: none; /* 초기에는 숨김 상태로 설정 */
+	font-size: x-large;
+}
+
+#clearSearchInput:hover {
+	color: red; /* x에 호버될 때 색상 변경 등 추가 스타일 적용 가능 */
+}
+
+nav {
+	position: relative;
+	z-index: 1; /* #searchResults 위로 올라오도록 설정 */
+}
+
+#searchResults {
+	position: absolute;
+	top: 100%; /* 아래에 표시 */
+	z-index: 2;
+	display: none;
+	width: 455px;
+	max-height: 500px; /* 레이어의 최대 높이 설정 */
+	overflow-y: auto; /* 넘치는 경우 스크롤 표시 */
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	left: 0;
+	box-sizing: unset;
+}
+
+#searchResults li {
+	padding: 8px;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+	height: 20px;
+    margin: 0;
+    padding: 10px;
+    box-sizing: unset;
+}
+
+#searchResults li:last-child {
+	border-bottom: none;
+}
+
+#searchResults span {
+	font-size: 12px;
+	border-bottom: none;
+}
+
+#searchResults button {
+	font-size: 12px;
+	display: inline-block;
+	border-radius: 0px;
+	font-weight: 700;
+	background-color: inherit;
+	margin: 0;
+	text-decoration: none;
+}
+
+li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/*button {*/
+/*	margin-left: 5px; !* 삭제 버튼과 텍스트 사이의 간격 조절 *!*/
+/*}*/
+.input-group #input-group-text {
+	margin-left: 5px; /* 입력 상자와 '×' 사이에 간격 추가 */
+	cursor: pointer;
+	height: 38px;
+}
+
+/* 검색 결과 리스트 스타일 */
+.list-group {
+	position: absolute;
+	top: 100%; /* 검색창 아래에 위치 */
+	left: 0;
+	z-index: 1000; /* 다른 요소들 위에 표시 */
+	width: 100%; /* 가로 폭을 100%로 설정하거나 필요에 따라 조절하세요 */
+	margin: 0;
+	padding: 0;
+	display: none; /* 초기에는 숨겨둠 */
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.rolling {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+	height: 30px;
+}
+
+.rolling li {
+	margin: 0px;
+	padding: 0px;
+	height: 30px;
+}
+
+.card-top {
+	width: calc(25% - 20px); /* 20px은 마진 등을 고려한 여백 값으로 조절하세요 */
+	margin: 10px; /* 여백 조절 */
+	box-sizing: border-box; /* 상자 크기를 여백과 패딩을 포함하여 계산하도록 설정 */
+}
+
+#result .result-container .empty-result {
+	padding: 34px 0 24px 0;
+	text-align: center;
+}
+
+button {
+	border: none;
+}
+
+
+
+/*===========*/
+#playList {
+	border: 1px solid black;
+	
+	background-color: white;
+	
+	position: absolute;
+	bottom: 65px;
+    right: 8px;
+	
+	height: 660px;
+	width: 480px;
+	
+	overflow: scroll;
+	overflow-x: hidden;
+}
+#playList .notification .notiInfo {
+	width: 440px;
+	height: 40px;
+	padding: 12px 12px 12px 20px;
+	margin: 0;
+	display: flex;
+}
+#playList .notification .title-small {
+	width: 300px;
+}
+.notification .notiContent-small {
+	width: 300px;
+	font-size: 13px;
+}
+#playList .notification .notiContentContainer {
+	width: 300px;
+}
+#playList .notification .titleContainer {
+	flex-grow: 0;
+	margin-left: 10px;
+}
+
+#playListTop h3 {
+	float: left;
+	margin: 20px 20px;
+}
+#playListTop img#closeBtn {
+	float: right;
+	width: 30px;
+	margin: 20px 20px;
+}
+#playList img.playingImg {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	margin: 5px auto;
+}
+#playList .playingImgContainer {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	cursor: pointer;
+	
+	background-color: rgba(115, 115, 115, 0.7);
+}
+#playListMain .playListMenuContainer {
+	margin-left: 80px;
+}
+#playListMain .playListMenuContainer img.playListLike {
+	width: 30px;
+	height: 30px;
+	margin-top: 5px;
+}
+#playListMain .playListMenuContainer img.playListDelete {
+	width: 30px;
+	height: 30px;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+
+#nowPlayContainer {
+	width: 250px;
+	height: 40px;
+	margin-top: 12px;
+	float: left;
+	display: flex;
+	align-items: center;
+}
+
+.notiPicContainer {
+	border-radius: 3px;
+	width: 45px;
+	height: 45px;
+	float: left;
+	overflow: hidden;
+}
+.notiPic {
+	width: 45px;
+	height: 45px;
+}
+.titleContainer {
+	flex-grow: 1;
+	height: 100%;
+	width: 200px;
+	margin-left: 50px;
+}
+.title-small {
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: normal;
+    cursor: pointer;
+    width: 200px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(166, 166, 166);
+    text-align: left;
+}
+
+.notiContentContainer {
+	overflow: hidden;
+    /* white-space: nowrap; */
+    text-overflow: ellipsis;
+    word-break: normal;
+    cursor: pointer;
+    width: 200px;
+    display: inline-block;
+    color: rgb(101, 101, 101);
+    text-align: left;
+    height: 28px;
+}
+.title-small:hover, .notiContentContainer:hover {
+	color: black;
+}
+
+*.btn {
+	cursor: pointer;
+}
+
+
+#audio-player-container {
+	width: 1240px;
+	height: 40px;
+	display: inline-block;
+}
+.notiContainer {
+	position: relative;
+	float: left;
+	/* margin-bottom: 10px; */
+}
+#playBtsContainer {
+	position: relative;
+	top: 15px;
+	padding-left: 30px;
+}
+#trackContainer {
+	position: relative;
+	padding-left: 20px;
+	top: 20px;
+	float: left;
+}
+.time {
+	position: relative;
+	bottom: 3px;
+	padding: 0 5px;
+	margin-bottom: -3px;
+}
+#volumeContainer {
+	position: relative;
+	width: 40px;
+	height: 170px;
+	float: left;
+	bottom: 120px;
+	margin-bottom: -120px;
+	margin-left: 15px;
+	margin-right: 20px;
+	z-index: 111;
+}
+
+#volume-slide-container {
+	display: inline-block;
+	position: relative;
+	/*bottom: 130px;
+	left: 35px;*/
+	background-color: rgb(236, 236, 236);
+	width: 40px;
+	height: 120px;
+	border-radius: 50px;
+	margin-bottom: -130px;
+	visibility: hidden;
+}
+#volume-slider{
+	position: relative;
+	right: 30px;
+	top: 50px;
+}
+#mute-icon{
+	overflow: hidden;
+	margin-top: 110px;
+	margin-left: 5px;
+}
+
+img.playerBtn {
+	cursor: pointer;
+	width: 30px;
+}
+img#play-icon {
+	margin-left: 4px;
+}
+img#playList-icon {
+	float: right;
+	margin-right: 30px;
+	margin-top: 12px;
+	width: 35px;
+}
+img#like-icon{
+	float: right;
+	margin-right: 35px;
+	margin-top: 17px;
+	width: 25px;
+}
